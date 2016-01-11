@@ -18,20 +18,61 @@ import java.io.InputStreamReader;
  */
 public class WebServiceWrapper {
 
-    private static String SERVER = "http://radarbike-izze.rhcloud.com/";
+    private static String SERVER_URL = "http://myservice-cecode.rhcloud.com/api/";
+    
+    private static String CREATE_LOGIN = "signup";
 
-    public static void doPost(String imei, double lat, double lng){
+    private static String AUTHENTICATE = "authenticate";
+
+    public static void doCreateLogin(String email, String password){
         try {
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
 
             JSONObject json  = new JSONObject();
 
-            json.put("imei", imei);
-            json.put("lat", lat);
-            json.put("lng", lng);
+            json.put("email", email);
+            json.put("password", password);
 
-            HttpPost post = new HttpPost(SERVER + "position");
+            HttpPost post = new HttpPost(SERVER_URL + CREATE_LOGIN);
+            post.addHeader(HTTP.CONTENT_TYPE, "application/json");
+
+            System.out.println(json);
+
+            StringEntity se = new StringEntity(json.toString());
+
+            post.setEntity(se);
+            response = client.execute(post);
+
+            StringBuffer output = new StringBuffer();
+            if(response!=null){
+                InputStream in = response.getEntity().getContent(); //Get the data in the entity
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                System.out.println("Output from Server .... \n");
+                String line = "";
+                while ((line = br.readLine()) != null) {
+                    output.append(line);
+                    System.out.println(output);
+                }
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void doAuthenticate(String email, String password){
+        try {
+            HttpClient client = new DefaultHttpClient();
+            HttpResponse response;
+
+            JSONObject json  = new JSONObject();
+
+            json.put("email", email);
+            json.put("password", password);
+
+            HttpPost post = new HttpPost(SERVER_URL + AUTHENTICATE);
             post.addHeader(HTTP.CONTENT_TYPE, "application/json");
 
             System.out.println(json);
@@ -65,7 +106,7 @@ public class WebServiceWrapper {
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
 
-            HttpGet get = new HttpGet(SERVER + "lastPosition");
+            HttpGet get = new HttpGet(SERVER_URL + "lastPosition");
             get.addHeader(HTTP.CONTENT_TYPE, "application/json");
 
             response = client.execute(get);
