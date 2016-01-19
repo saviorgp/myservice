@@ -7,6 +7,8 @@
     <string name="login_btn">Login</string>
     <string name="new_login_btn">Criar conta</string>
     <string name="forgot_btn">Esqueci minha senha</string>
+    <string name="ok_btn">OK</string>
+    <string name="cancel_btn">Cancelar</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -21,4 +23,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_add_user">AddUserActivity</string>
+    <string name="title_activity_services_search">ServicesSearchActivity</string>
 </resources>
