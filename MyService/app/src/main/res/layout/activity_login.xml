@@ -36,12 +36,14 @@
                 android:id="@+id/edt_username"
                 android:drawableLeft="@drawable/ic_user"
                 android:inputType="text"
+                android:hint="@string/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <EditText
                 android:drawableLeft="@drawable/ic_passwd"
                 android:id="@+id/edt_password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

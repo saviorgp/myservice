@@ -1,5 +1,7 @@
 package com.myservice.model.component;
 
+import com.myservice.exceptions.LoginException;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -85,7 +87,7 @@ public class WebServiceWrapper {
     }
 
 
-    public static void doAuthenticate(UserVO user) throws Throwable {
+    public static void doAuthenticate(UserVO user) throws Exception {
         try {
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
@@ -119,7 +121,7 @@ public class WebServiceWrapper {
 
             if(response.getStatusLine().getStatusCode() == LOGIN_FAILED_HTTP_CODE){
                 json = new JSONObject(output.toString());
-                throw new Exception(json.getString(ERROR_REASON_DESC));
+                throw new LoginException(json.getString(ERROR_REASON_DESC));
             }
 
         } catch(Throwable t) {

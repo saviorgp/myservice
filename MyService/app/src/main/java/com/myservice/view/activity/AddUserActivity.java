@@ -94,7 +94,7 @@ public class AddUserActivity extends AppCompatActivity {
                             }
                         }
                     }
-                };
+                }.execute();
             }
         });
 

@@ -83,7 +83,7 @@ public class LoginActivity extends Activity{
                             Toast.makeText(LoginActivity.this,mErroMsg,Toast.LENGTH_LONG).show();
                         }
                     }
-                };
+                }.execute();
             }
         });
     }
