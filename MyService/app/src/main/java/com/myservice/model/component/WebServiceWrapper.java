@@ -24,15 +24,32 @@ public class WebServiceWrapper {
 
     private static String AUTHENTICATE = "authenticate";
 
-    public static void doCreateLogin(String email, String password){
+    private final static int LOGIN_FAILED_HTTP_CODE = 422;
+
+    private final static int CREATE_LOGIN_FAILED_HTTP_CODE = 409;
+
+    private final static String ERROR_REASON_DESC = "description";
+
+    private WebServiceWrapper(){
+
+    }
+
+    public static void doCreateLogin(UserVO user) throws Throwable {
         try {
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
 
             JSONObject json  = new JSONObject();
 
-            json.put("email", email);
-            json.put("password", password);
+            json.put("name", user.getName());
+            json.put("last_name", user.getLastName());
+            json.put("email", user.getEmail());
+            json.put("password", user.getPassword());
+            json.put("city", user.getCity());
+            json.put("state", user.getState());
+            json.put("email", user.getEmail());
+            json.put("phone", user.getPhone());
+            json.put("neighborhood", user.getAddress());
 
             HttpPost post = new HttpPost(SERVER_URL + CREATE_LOGIN);
             post.addHeader(HTTP.CONTENT_TYPE, "application/json");
@@ -56,21 +73,27 @@ public class WebServiceWrapper {
                 }
             }
 
-        } catch(Exception e) {
-            e.printStackTrace();
+            if(response.getStatusLine().getStatusCode() == CREATE_LOGIN_FAILED_HTTP_CODE){
+                // TODO impl. tratamento de erro.
+                json = new JSONObject(output.toString());
+                throw new Exception(json.getString(ERROR_REASON_DESC));
+            }
+
+        } catch(Throwable t) {
+            throw t;
         }
     }
 
 
-    public static void doAuthenticate(String email, String password){
+    public static void doAuthenticate(UserVO user) throws Throwable {
         try {
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
 
             JSONObject json  = new JSONObject();
 
-            json.put("email", email);
-            json.put("password", password);
+            json.put("email", user.getEmail());
+            json.put("password", user.getPassword());
 
             HttpPost post = new HttpPost(SERVER_URL + AUTHENTICATE);
             post.addHeader(HTTP.CONTENT_TYPE, "application/json");
@@ -94,8 +117,13 @@ public class WebServiceWrapper {
                 }
             }
 
-        } catch(Exception e) {
-            e.printStackTrace();
+            if(response.getStatusLine().getStatusCode() == LOGIN_FAILED_HTTP_CODE){
+                json = new JSONObject(output.toString());
+                throw new Exception(json.getString(ERROR_REASON_DESC));
+            }
+
+        } catch(Throwable t) {
+           throw t;
         }
     }
 

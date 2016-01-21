@@ -1,13 +1,21 @@
 <resources>
     <string name="app_name">MyService</string>
-    <string name="profissionais">Profissionais</string>
-    <string name="usuarios">Usuários</string>
+    <string name="profissionais_btn">Profissionais</string>
+    <string name="usuarios_btn">Usuários</string>
     <string name="entrar">Entrar</string>
     <string name="esqueci_minha_senha">Esqueci minha senha</string>
 
+    <string name="nome">Nome</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="celular">Celular</string>
+    <string name="telefone_fixo">Tel. fixo</string>
+    <string name="cidade">Cidade</string>
+    <string name="estado">Estado</string>
+    <string name="endereco">Endereço</string>
     <string name="email">E-mail</string>
-    <string name="password">Password</string>
-    <string name="action_settings">Settings</string>
+    <string name="password">Senha</string>
+    <string name="action_settings">Configurações</string>
+
     <string name="login_btn">Login</string>
     <string name="new_login_btn">Criar conta</string>
     <string name="forgot_btn">Esqueci minha senha</string>
@@ -29,4 +37,6 @@
     </string>
     <string name="title_activity_add_user">AddUserActivity</string>
     <string name="title_activity_services_search">ServicesSearchActivity</string>
+
+    <string name="msg_criacao_login_error">Erro na criação de conta. Verifique os dados novamente.</string>
 </resources>

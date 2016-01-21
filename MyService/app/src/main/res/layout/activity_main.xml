@@ -20,7 +20,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/profissionais"
+        android:text="@string/profissionais_btn"
         android:id="@+id/button"
         android:background="@drawable/gray_button"
         style="@style/Button_12_Blue"
@@ -33,7 +33,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/usuarios"
+        android:text="@string/usuarios_btn"
         android:background="@drawable/gray_button"
         style="@style/Button_12_Blue"
         android:id="@+id/button2"
