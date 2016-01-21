@@ -40,6 +40,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <EditText
+                android:drawableLeft="@drawable/ic_passwd"
+                android:id="@+id/edt_password"
+                android:hint="@string/code"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
         </LinearLayout>
 
 

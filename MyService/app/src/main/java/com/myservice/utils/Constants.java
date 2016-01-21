@@ -5,7 +5,7 @@ package com.myservice.utils;
  */
 public final class Constants {
 
-    private static final int LOGIN_TRIES_COUNTER = 3;
+    public static final String PREF_RESET_PASSWD_TOKEN = "PREF_RESET_PASSWD_TOKEN";
 
     private Constants(){
     }

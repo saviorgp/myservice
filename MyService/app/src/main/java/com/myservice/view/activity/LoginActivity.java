@@ -1,6 +1,7 @@
 package com.myservice.view.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,9 +12,9 @@ import android.widget.Toast;
 
 import com.myservice.R;
 import com.myservice.exceptions.LoginException;
+import com.myservice.helper.MailSenderHelper;
 import com.myservice.helper.WebServiceHelper;
 import com.myservice.model.component.UserVO;
-
 
 public class LoginActivity extends Activity{
 
@@ -100,8 +101,47 @@ public class LoginActivity extends Activity{
         mForgotPasswdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPasswdActivity.class);
-                startActivity(intent);
+                new AsyncTask<String, Void, Boolean>() {
+                    private ProgressDialog progressDialog;
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        progressDialog = ProgressDialog.show(LoginActivity.this,
+                                LoginActivity.this.getString(R.string.title_wait),
+                                LoginActivity.this.getString(R.string.msg_send_token_mail),
+                                true, false);
+                    }
+
+                    @Override
+                    protected void onPostExecute(Boolean result) {
+                        super.onPostExecute(result);
+                        progressDialog.dismiss();
+                        if(result){
+                            Intent intent = new Intent(LoginActivity.this, ForgotPasswdActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(LoginActivity.this,
+                                    LoginActivity.this.getString(
+                                            R.string.msg_forgot_passwd_gen_token_error),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    protected Boolean doInBackground(String... email) {
+                        boolean result = false;
+                        try {
+                            MailSenderHelper.getInstance().sendResetPasswdMail(email[0],
+                                                                               LoginActivity.this);
+                            result = true;
+                        } catch (Throwable t) {
+                            t.printStackTrace();
+                        }
+
+                        return result;
+                    }
+                }.execute(mEmailTxt.getText().toString());
             }
         });
     }
