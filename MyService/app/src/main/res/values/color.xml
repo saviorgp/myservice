@@ -5,4 +5,5 @@
     <color name="preto">#000000</color>
     <color name="branco">#FFFFFF</color>
     <color name="blue">#00A2FF</color>
+    <color name="blue_opcity">#0D00A2FF</color>
 </resources>

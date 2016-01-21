@@ -2,6 +2,7 @@
     <string name="app_name">MyService</string>
     <string name="profissionais">Profissionais</string>
     <string name="usuarios">Usuários</string>
+    <string name="entrar">Entrar</string>
 
     <string name="email">E-mail</string>
     <string name="password">Password</string>
