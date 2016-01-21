@@ -5,6 +5,8 @@ package com.myservice.utils;
  */
 public final class Constants {
 
+    private static final int LOGIN_TRIES_COUNTER = 3;
+
     private Constants(){
     }
 

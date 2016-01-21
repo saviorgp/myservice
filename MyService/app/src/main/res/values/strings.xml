@@ -19,6 +19,7 @@
     <string name="login_btn">Login</string>
     <string name="new_login_btn">Criar conta</string>
     <string name="forgot_btn">Esqueci minha senha</string>
+    <string name="change_passwd_btn">Alterar senha</string>
     <string name="ok_btn">OK</string>
     <string name="cancel_btn">Cancelar</string>
     <string name="title_activity_login">Sign in</string>
@@ -39,4 +40,5 @@
     <string name="title_activity_services_search">ServicesSearchActivity</string>
 
     <string name="msg_criacao_login_error">Erro na criação de conta. Verifique os dados novamente.</string>
+    <string name="title_activity_forgot_passwd">ForgotPasswdActivity</string>
 </resources>

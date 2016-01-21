@@ -86,6 +86,23 @@ public class LoginActivity extends Activity{
                 }.execute();
             }
         });
+
+        mCreateLoginBtn = (Button) findViewById(R.id.button2);
+        mCreateLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, AddUserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mForgotPasswdBtn = (Button) findViewById(R.id.button);
+        mForgotPasswdBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswdActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
-
