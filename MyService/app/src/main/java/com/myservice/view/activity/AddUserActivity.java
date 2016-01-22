@@ -35,6 +35,8 @@ public class AddUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
 
+        findViewById(R.id.form_block).getBackground().setAlpha(127);
+
         mNomeTxt = (EditText) findViewById(R.id.nome_txt);
         mSobrenomeTxt = (EditText) findViewById(R.id.sobrenome_txt);
         mEmailTxt = (EditText) findViewById(R.id.email_txt);
