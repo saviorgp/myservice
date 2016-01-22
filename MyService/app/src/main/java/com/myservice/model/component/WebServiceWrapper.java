@@ -1,5 +1,6 @@
 package com.myservice.model.component;
 
+import com.myservice.exceptions.CreateUserException;
 import com.myservice.exceptions.LoginException;
 
 import org.apache.http.HttpResponse;
@@ -22,11 +23,15 @@ public class WebServiceWrapper {
 
     private static String SERVER_URL = "http://myservice-cecode.rhcloud.com/api/";
     
-    private static String CREATE_LOGIN = "signup";
+    private static String CMD_CREATE_LOGIN = "signup";
+     
+    private static String CMD_AUTHENTICATE = "authenticate";
 
-    private static String AUTHENTICATE = "authenticate";
-
+    private static String CMD_RESET_PASSWORD = "password/reset";
+   
     private final static int LOGIN_FAILED_HTTP_CODE = 422;
+
+    private final static int LOGIN_INTERNAL_ERROR_CODE = 500;
 
     private final static int CREATE_LOGIN_FAILED_HTTP_CODE = 409;
 
@@ -45,15 +50,14 @@ public class WebServiceWrapper {
 
             json.put("name", user.getName());
             json.put("last_name", user.getLastName());
-            json.put("email", user.getEmail());
+            json.put("email", user.getEmail().trim());
             json.put("password", user.getPassword());
             json.put("city", user.getCity());
             json.put("state", user.getState());
-            json.put("email", user.getEmail());
             json.put("phone", user.getPhone());
             json.put("neighborhood", user.getAddress());
 
-            HttpPost post = new HttpPost(SERVER_URL + CREATE_LOGIN);
+            HttpPost post = new HttpPost(SERVER_URL + CMD_CREATE_LOGIN);
             post.addHeader(HTTP.CONTENT_TYPE, "application/json");
 
             System.out.println(json);
@@ -76,9 +80,13 @@ public class WebServiceWrapper {
             }
 
             if(response.getStatusLine().getStatusCode() == CREATE_LOGIN_FAILED_HTTP_CODE){
-                // TODO impl. tratamento de erro.
                 json = new JSONObject(output.toString());
-                throw new Exception(json.getString(ERROR_REASON_DESC));
+                throw new CreateUserException(json.getString(ERROR_REASON_DESC));
+            } else if(response.getStatusLine().getStatusCode() == LOGIN_INTERNAL_ERROR_CODE){
+                String msg = output.toString().replace("[","");
+                msg = msg.replace("]", "");
+                msg = msg.replaceAll("\"", "");
+                throw new CreateUserException(msg);
             }
 
         } catch(Throwable t) {
@@ -94,10 +102,10 @@ public class WebServiceWrapper {
 
             JSONObject json  = new JSONObject();
 
-            json.put("email", user.getEmail());
+            json.put("email", user.getEmail().trim());
             json.put("password", user.getPassword());
 
-            HttpPost post = new HttpPost(SERVER_URL + AUTHENTICATE);
+            HttpPost post = new HttpPost(SERVER_URL + CMD_AUTHENTICATE);
             post.addHeader(HTTP.CONTENT_TYPE, "application/json");
 
             System.out.println(json);
@@ -122,11 +130,58 @@ public class WebServiceWrapper {
             if(response.getStatusLine().getStatusCode() == LOGIN_FAILED_HTTP_CODE){
                 json = new JSONObject(output.toString());
                 throw new LoginException(json.getString(ERROR_REASON_DESC));
+            } else if(response.getStatusLine().getStatusCode() == LOGIN_INTERNAL_ERROR_CODE){
+                String msg = output.toString().replace("[","");
+                msg = msg.replace("]", "");
+                msg = msg.replaceAll("\"", "");
+                throw new LoginException(msg);
             }
 
         } catch(Throwable t) {
            throw t;
         }
+    }
+
+    public static String doResetPassword(String email) throws Exception {
+        String newPasswd = null;
+        try {
+            HttpClient client = new DefaultHttpClient();
+            HttpResponse response;
+
+            JSONObject json  = new JSONObject();
+
+            json.put("email", email.trim());
+            
+            HttpPost post = new HttpPost(SERVER_URL + CMD_RESET_PASSWORD);
+            post.addHeader(HTTP.CONTENT_TYPE, "application/json");
+
+            System.out.println(json);
+
+            StringEntity se = new StringEntity(json.toString());
+
+            post.setEntity(se);
+            response = client.execute(post);
+
+            StringBuffer output = new StringBuffer();
+            if(response!=null){
+                InputStream in = response.getEntity().getContent(); //Get the data in the entity
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                System.out.println("Output from Server .... \n");
+                String line = "";
+                while ((line = br.readLine()) != null) {
+                    output.append(line);
+                    System.out.println(output);
+                }
+            }
+
+            json = new JSONObject(output.toString());
+            newPasswd = json.getString("password");
+
+        } catch(Throwable t) {
+            throw t;
+        }
+        
+        return newPasswd;
     }
 
     public static JSONObject doGet(){

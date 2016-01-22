@@ -1,5 +1,7 @@
 package com.myservice.view.activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,9 +55,15 @@ public class AddUserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mErroMsg = "";
                 new AsyncTask<Boolean, Void, Boolean>() {
-
+                    private ProgressDialog progressDialog;
+                    
                     @Override
                     protected void onPreExecute() {
+                        progressDialog = ProgressDialog.show(AddUserActivity.this,
+                                AddUserActivity.this.getString(R.string.title_wait),
+                                AddUserActivity.this.getString(R.string.msg_creating_user),
+                                true, false);
+                        
                         mUserVO.setName(mNomeTxt.getText().toString());
                         mUserVO.setLastName(mSobrenomeTxt.getText().toString());
                         mUserVO.setEmail(mEmailTxt.getText().toString());
@@ -74,8 +82,8 @@ public class AddUserActivity extends AppCompatActivity {
                             WebServiceHelper.signupUser(mUserVO);
                             result = true;
                         } catch(CreateUserException c){
+                            mErroMsg = c.getMessage();
                         } catch (Throwable t) {
-
                         }
 
                         return result;
@@ -83,7 +91,11 @@ public class AddUserActivity extends AppCompatActivity {
 
                     @Override
                     protected void onPostExecute(Boolean result) {
+                        progressDialog.dismiss();
                         if (result) {
+                            Intent intent = new Intent(AddUserActivity.this,
+                                                       LoginActivity.class);
+                            startActivity(intent);
                             finish();
                         } else {
                             if(!mErroMsg.isEmpty()) {

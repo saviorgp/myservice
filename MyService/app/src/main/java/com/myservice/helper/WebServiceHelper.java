@@ -19,4 +19,8 @@ public class WebServiceHelper {
     public static void signupUser(UserVO userVO) throws Throwable {
         WebServiceWrapper.doCreateLogin(userVO);
     }
+
+    public static String resetPassword(String email) throws Throwable {
+        return WebServiceWrapper.doResetPassword(email);
+    }
 }

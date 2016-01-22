@@ -74,10 +74,7 @@ public class ForgotPasswdActivity extends AppCompatActivity {
                             protected Boolean doInBackground(String... email) {
                                 boolean result = false;
                                 try {
-                                    String newPasswd = "teste";
-                                    // TODO chamar webservice de solicittação de senha
-                                    //WebServiceHelper.
-
+                                    String newPasswd = WebServiceHelper.resetPassword(email[0]);
                                     MailSenderHelper.getInstance().sendNewPasswdMail(email[0],
                                                               newPasswd, ForgotPasswdActivity.this);
                                     result = true;

@@ -73,8 +73,8 @@ public class MailSenderHelper {
     }
 
     public void sendNewPasswdMail(String email, String newPasswd, Context context) throws Throwable{
-        String subject = context.getString(R.string.forgot_new_passwd_email_msg);
-        String messageBody = context.getString(R.string.forgot_new_passwd_email_subject) + " " + newPasswd;
+        String subject = context.getString(R.string.forgot_new_passwd_email_subject);
+        String messageBody = context.getString(R.string.forgot_new_passwd_email_msg) + " " + newPasswd;
         Message msg = createMessage(email,subject,messageBody, context);
         Transport.send(msg);
     }

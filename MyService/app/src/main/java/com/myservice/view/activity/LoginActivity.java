@@ -53,15 +53,22 @@ public class LoginActivity extends Activity{
             public void onClick(View v) {
                 mErroMsg = "";
                 new AsyncTask<Boolean, Void, Boolean>(){
-
+                    private ProgressDialog progressDialog;
+                    
                     @Override
                     protected void onPreExecute() {
+                        progressDialog = ProgressDialog.show(LoginActivity.this,
+                                LoginActivity.this.getString(R.string.title_wait),
+                                LoginActivity.this.getString(R.string.msg_login_in),
+                                true, false);
+                        
                         mUserVO.setEmail(mEmailTxt.getText().toString());
                         mUserVO.setPassword(mPasswdTxt.getText().toString());
                     }
 
                     @Override
                     protected Boolean doInBackground(Boolean... params) {
+                        progressDialog.dismiss();
                         boolean result = false;
                         try{
                             WebServiceHelper.authenticateUser(mUserVO);
