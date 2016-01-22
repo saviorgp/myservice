@@ -51,6 +51,7 @@ public class ForgotPasswdActivity extends AppCompatActivity {
                                         ForgotPasswdActivity.this.getString(R.string.title_wait),
                                         ForgotPasswdActivity.this.getString(R.string.msg_send_new_passwd_mail),
                                         true, false);
+                                        progressDialog.setCancelable(false);
                             }
 
                             @Override

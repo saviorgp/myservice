@@ -63,6 +63,7 @@ public class AddUserActivity extends AppCompatActivity {
                                 AddUserActivity.this.getString(R.string.title_wait),
                                 AddUserActivity.this.getString(R.string.msg_creating_user),
                                 true, false);
+                        progressDialog.setCancelable(false);
                         
                         mUserVO.setName(mNomeTxt.getText().toString());
                         mUserVO.setLastName(mSobrenomeTxt.getText().toString());

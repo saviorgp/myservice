@@ -61,6 +61,7 @@ public class LoginActivity extends Activity{
                                 LoginActivity.this.getString(R.string.title_wait),
                                 LoginActivity.this.getString(R.string.msg_login_in),
                                 true, false);
+                        progressDialog.setCancelable(false);
                         
                         mUserVO.setEmail(mEmailTxt.getText().toString());
                         mUserVO.setPassword(mPasswdTxt.getText().toString());
@@ -68,7 +69,6 @@ public class LoginActivity extends Activity{
 
                     @Override
                     protected Boolean doInBackground(Boolean... params) {
-                        progressDialog.dismiss();
                         boolean result = false;
                         try{
                             WebServiceHelper.authenticateUser(mUserVO);
@@ -83,6 +83,7 @@ public class LoginActivity extends Activity{
 
                     @Override
                     protected void onPostExecute(Boolean result) {
+                        progressDialog.dismiss();
                         if(result){
                             Intent intent = new Intent(LoginActivity.this,
                                                        ServicesSearchActivity.class);
@@ -118,6 +119,7 @@ public class LoginActivity extends Activity{
                                 LoginActivity.this.getString(R.string.title_wait),
                                 LoginActivity.this.getString(R.string.msg_send_token_mail),
                                 true, false);
+                        progressDialog.setCancelable(false);
                     }
 
                     @Override
