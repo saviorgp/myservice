@@ -27,6 +27,7 @@
 
     <string name="title_wait">Por favor espere</string>
     <string name="msg_send_token_mail">Enviando código de alteração de senha por e-mail...</string>
+    <string name="msg_send_new_passwd_mail">Solicitando nova senha...</string>
 
     <string name="msg_criacao_login_error">Erro na criação de conta. Verifique os dados novamente.</string>
     <string name="msg_forgot_passwd_gen_token_error">Erro ao solicitar nova senha!</string>
@@ -42,5 +43,6 @@
     <string name="forgot_reset_passwd_email_msg">Uma solicitação da alteração de sua senha de acesso do My Services foi realizada.\nPor favor digite o seguinte código de alteração para realizar a alteração de sua senha</string>
     <string name="forgot_new_passwd_email_subject">My Services - Nova senha</string>
     <string name="forgot_new_passwd_email_msg">A sua senha de acesso da aplicação My Services foi alterada para</string>
+    <string name="forgot_wrong_token_msg">Código de alteração de senha não confere!</string>
 
 </resources>

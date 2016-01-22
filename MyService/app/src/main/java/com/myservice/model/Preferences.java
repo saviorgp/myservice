@@ -44,4 +44,8 @@ public class Preferences {
         }
         sharedEditor.apply();
     }
+
+    public Object getSharedPreference(String key){
+        return prefs.getAll().get(key);
+    }
 }
