@@ -14,7 +14,9 @@ import com.myservice.R;
 import com.myservice.exceptions.LoginException;
 import com.myservice.helper.MailSenderHelper;
 import com.myservice.helper.WebServiceHelper;
+import com.myservice.model.Preferences;
 import com.myservice.model.component.UserVO;
+import com.myservice.utils.Constants;
 
 public class LoginActivity extends Activity{
 
@@ -71,7 +73,7 @@ public class LoginActivity extends Activity{
                     protected Boolean doInBackground(Boolean... params) {
                         boolean result = false;
                         try{
-                            WebServiceHelper.authenticateUser(mUserVO);
+                            WebServiceHelper.authenticateUser(mUserVO, LoginActivity.this);
                             result = true;
                         } catch (LoginException l){
                             mErroMsg = l.getMessage();
@@ -85,8 +87,20 @@ public class LoginActivity extends Activity{
                     protected void onPostExecute(Boolean result) {
                         progressDialog.dismiss();
                         if(result){
-                            Intent intent = new Intent(LoginActivity.this,
-                                                       ServicesSearchActivity.class);
+                            boolean needToReset = Preferences.getPreferences(LoginActivity.this)
+                                 .getSharedPreference(Constants.PREF_NEED_TO_RESET_PASSWD) != null ?
+                                  ((Boolean)Preferences.getPreferences(LoginActivity.this)
+                                      .getSharedPreference(Constants.PREF_NEED_TO_RESET_PASSWD))
+                                         .booleanValue() : false;
+                            
+                            Intent intent = null;
+                            if(needToReset) {
+                                intent = new Intent(LoginActivity.this,
+                                                    ResetPasswordActivity.class);
+                            } else {
+                                intent = new Intent(LoginActivity.this,
+                                                    ServicesSearchActivity.class);
+                            }
                             startActivity(intent);
                         } else {
                             Toast.makeText(LoginActivity.this,mErroMsg,Toast.LENGTH_LONG).show();

@@ -62,6 +62,7 @@ public class ForgotPasswdActivity extends AppCompatActivity {
                                     Intent intent = new Intent(ForgotPasswdActivity.this,
                                                                LoginActivity.class);
                                     startActivity(intent);
+                                    Preferences.getPreferences(ForgotPasswdActivity.this).editPreference(Constants.PREF_RESET_PASSWD_TOKEN,true);
                                     finish();
                                 } else {
                                     Toast.makeText(ForgotPasswdActivity.this,

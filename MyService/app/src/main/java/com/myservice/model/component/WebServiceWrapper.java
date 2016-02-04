@@ -28,6 +28,8 @@ public class WebServiceWrapper {
     private static String CMD_AUTHENTICATE = "authenticate";
 
     private static String CMD_RESET_PASSWORD = "password/reset";
+
+    private static String CMD_CHG_PASSWORD = "password/change?token=";
    
     private final static int LOGIN_FAILED_HTTP_CODE = 422;
 
@@ -95,7 +97,8 @@ public class WebServiceWrapper {
     }
 
 
-    public static void doAuthenticate(UserVO user) throws Exception {
+    public static String doAuthenticate(UserVO user) throws Exception {
+        String authToken = null;
         try {
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
@@ -136,10 +139,14 @@ public class WebServiceWrapper {
                 msg = msg.replaceAll("\"", "");
                 throw new LoginException(msg);
             }
+            
+            authToken = json.getJSONObject("user").getString("token");
 
         } catch(Throwable t) {
            throw t;
         }
+        
+        return authToken;
     }
 
     public static String doResetPassword(String email) throws Exception {
@@ -182,6 +189,48 @@ public class WebServiceWrapper {
         }
         
         return newPasswd;
+    }
+
+    public static boolean doChangePassword(String passwd, String token) throws Exception {
+        boolean result = false;
+        try {
+            HttpClient client = new DefaultHttpClient();
+            HttpResponse response;
+
+            JSONObject json  = new JSONObject();
+
+            json.put("password", passwd.trim());
+
+            HttpPost post = new HttpPost(SERVER_URL + CMD_CHG_PASSWORD + token);
+            post.addHeader(HTTP.CONTENT_TYPE, "application/json");
+
+            System.out.println(json);
+
+            StringEntity se = new StringEntity(json.toString());
+
+            post.setEntity(se);
+            response = client.execute(post);
+
+            StringBuffer output = new StringBuffer();
+            if(response!=null){
+                InputStream in = response.getEntity().getContent(); //Get the data in the entity
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                System.out.println("Output from Server .... \n");
+                String line = "";
+                while ((line = br.readLine()) != null) {
+                    output.append(line);
+                    System.out.println(output);
+                }
+            }
+
+            json = new JSONObject(output.toString());
+            result = json.getBoolean("success");
+
+        } catch(Throwable t) {
+            throw t;
+        }
+
+        return result;
     }
 
     public static JSONObject doGet(){

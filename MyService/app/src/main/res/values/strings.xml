@@ -16,6 +16,8 @@
     <string name="password">Senha</string>
     <string name="code">Código</string>
     <string name="action_settings">Configurações</string>
+    <string name="new_passwd">Nova senha</string>
+    <string name="new_passwd_conf">Digite novamente</string>
 
     <string name="login_btn">Login</string>
     <string name="new_login_btn">Criar conta</string>
@@ -30,21 +32,24 @@
     <string name="msg_send_new_passwd_mail">Solicitando nova senha...</string>
     <string name="msg_creating_user">Cadastrando usuário...</string>
     <string name="msg_login_in">Realizando login...</string>
+    <string name="msg_reset_passwd_request">Alterando senha...</string>
 
     <string name="msg_criacao_login_error">Erro na criação de conta. Verifique os dados novamente.</string>
     <string name="msg_forgot_passwd_gen_token_error">Erro ao solicitar nova senha!</string>
     <string name="title_activity_forgot_passwd">ForgotPasswdActivity</string>
+    <string name="msg_reset_passwd_error">Erro ao resetar senha!</string>
 
     <string name="title_activity_add_user">AddUserActivity</string>
     <string name="title_activity_services_search">ServicesSearchActivity</string>
 
     <!-- Strings related to email reset -->
     <string name="forgot_email_sender">yasminbpaula@gmail.com</string>
-    <string name="forgot_email_passwsd">2222</string>
+    <string name="forgot_email_passwsd">200200369</string>
     <string name="forgot_reset_passwd_email_subject">My Services - Alteração de senha</string>
     <string name="forgot_reset_passwd_email_msg">Uma solicitação da alteração de sua senha de acesso do My Services foi realizada.\nPor favor digite o seguinte código de alteração para realizar a alteração de sua senha</string>
     <string name="forgot_new_passwd_email_subject">My Services - Nova senha</string>
     <string name="forgot_new_passwd_email_msg">A sua senha de acesso da aplicação My Services foi alterada para</string>
     <string name="forgot_wrong_token_msg">Código de alteração de senha não confere!</string>
+    <string name="forgot_wrong_passwd_reset">Nova senha não confere!</string>
 
 </resources>

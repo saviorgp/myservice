@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +45,9 @@ public class AddUserActivity extends AppCompatActivity {
         mEmailTxt = (EditText) findViewById(R.id.email_txt);
         mSenhaTxt = (EditText) findViewById(R.id.senha_txt);
         mCelTxt = (EditText) findViewById(R.id.celular_txt);
+        mCelTxt.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         mFixoTxt = (EditText) findViewById(R.id.fixo_txt);
+        mFixoTxt.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         mEnderecoTxt = (EditText) findViewById(R.id.endereco_txt);
         mCidadeTxt = (EditText) findViewById(R.id.cidade_txt);
         mEstadoTxt = (EditText) findViewById(R.id.estado_txt);

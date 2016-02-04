@@ -6,6 +6,8 @@ package com.myservice.utils;
 public final class Constants {
 
     public static final String PREF_RESET_PASSWD_TOKEN = "PREF_RESET_PASSWD_TOKEN";
+    public static final String PREF_NEED_TO_RESET_PASSWD = "PREF_NEED_TO_RESET_PASSWD";
+    public static final String SESSION_TOKEN = "SESSION_TOKEN";
 
     private Constants(){
     }

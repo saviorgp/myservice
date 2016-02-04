@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myservice"
     android:versionCode="10000"
-    android:versionName="1.00.00">
+    android:versionName="1.00.00" >
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -14,11 +14,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".view.activity.MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +35,9 @@
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activity.AddUserActivity" />
-        <activity android:name=".view.activity.ForgotPasswdActivity"></activity>
+        <activity android:name=".view.activity.ForgotPasswdActivity" />
+        <activity android:name=".view.activity.ResetPasswordActivity" >
+        </activity>
     </application>
 
 </manifest>
