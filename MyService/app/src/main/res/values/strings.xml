@@ -52,4 +52,7 @@
     <string name="forgot_wrong_token_msg">Código de alteração de senha não confere!</string>
     <string name="forgot_wrong_passwd_reset">Nova senha não confere!</string>
 
+    <!-- action bar -->
+    <string name="action_bar_search">Buscar serviços e contatos</string>
+
 </resources>
