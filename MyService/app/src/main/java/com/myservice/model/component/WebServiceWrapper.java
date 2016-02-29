@@ -1,5 +1,7 @@
 package com.myservice.model.component;
 
+import android.util.Log;
+
 import com.myservice.exceptions.CreateUserException;
 import com.myservice.exceptions.LoginException;
 
@@ -12,9 +14,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by AlexGP on 01/04/2016.
@@ -96,6 +101,46 @@ public class WebServiceWrapper {
         }
     }
 
+    public static String search(String query) throws Exception{
+
+        StringBuilder result = new StringBuilder();
+        HttpURLConnection conn = null;
+
+        try {
+            URL url = new URL("http://192.168.0.7/myservice/public/api/advertisements");
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            if(conn.getResponseCode() == 200) {
+
+                // if response code = 200 ok
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+
+                // Read the BufferedInputStream
+                BufferedReader r = new BufferedReader(new InputStreamReader(in));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = r.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                return sb.toString();
+            }
+            else{
+                Log.e("BILA", String.valueOf(conn.getResponseCode()));
+            }
+
+        }catch( Exception e) {
+            e.printStackTrace();
+            Log.e("WEB", e.getMessage());
+        }
+        finally {
+            conn.disconnect();
+        }
+
+
+        return result.toString();
+    }
 
     public static String doAuthenticate(UserVO user) throws Exception {
         String authToken = null;

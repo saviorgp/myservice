@@ -19,6 +19,16 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="Text_25">
+        <item name="android:textColor">@color/preto</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="Text_12">
+        <item name="android:textColor">@color/preto</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="ToolBar_EditText" parent="Widget.AppCompat.EditText">
         <item name="android:textColor">@color/cinza</item>
         <item name="android:textSize">14sp</item>

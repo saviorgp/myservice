@@ -19,16 +19,12 @@ import com.myservice.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mUserBtn;
-    private Button mCreateLoginBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mUserBtn = (Button) findViewById(R.id.button2);
-        mUserBtn.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -36,11 +32,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mCreateLoginBtn = (Button) findViewById(R.id.button);
-        mCreateLoginBtn.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddUserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.toolbar_logo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ServicesSearchActivity.class);
                 startActivity(intent);
             }
         });
