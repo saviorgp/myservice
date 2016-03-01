@@ -101,22 +101,19 @@ public class WebServiceWrapper {
         }
     }
 
-    public static String search(String query) throws Exception{
+    public static JSONObject search(String query) throws Exception{
 
         StringBuilder result = new StringBuilder();
         HttpURLConnection conn = null;
 
         try {
-            URL url = new URL("http://192.168.0.7/myservice/public/api/advertisements");
+            URL url = new URL("http://myservice-cecode.rhcloud.com/api/advertisements");
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
             if(conn.getResponseCode() == 200) {
 
-                // if response code = 200 ok
                 InputStream in = new BufferedInputStream(conn.getInputStream());
-
-                // Read the BufferedInputStream
                 BufferedReader r = new BufferedReader(new InputStreamReader(in));
                 StringBuilder sb = new StringBuilder();
                 String line;
@@ -124,7 +121,7 @@ public class WebServiceWrapper {
                     sb.append(line);
                 }
 
-                return sb.toString();
+                return new JSONObject(sb.toString());
             }
             else{
                 Log.e("BILA", String.valueOf(conn.getResponseCode()));
@@ -139,7 +136,7 @@ public class WebServiceWrapper {
         }
 
 
-        return result.toString();
+        return new JSONObject(result.toString());
     }
 
     public static String doAuthenticate(UserVO user) throws Exception {
