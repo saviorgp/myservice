@@ -10,6 +10,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.BlueActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:background">@color/dark_blue</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -21,6 +26,11 @@
 
     <style name="Text_25">
         <item name="android:textColor">@color/preto</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="Text_25_White">
+        <item name="android:textColor">@color/branco</item>
         <item name="android:textSize">25sp</item>
     </style>
 
