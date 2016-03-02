@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.myservice.R;
 import com.myservice.model.component.Advertisement;
@@ -24,6 +25,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
     private TransactionTask task;
     private JSONObject resultObject = null;
     private ListView listView;
+    private String query = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +33,17 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         setContentView(R.layout.activity_services_search);
         listView = (ListView)findViewById(R.id.listService);
 
+        query = getIntent().getStringExtra("QUERY");
+
+        ((TextView)findViewById(R.id.txt_query)).setText(query);
+
         startTransacao(this);
     }
 
     @Override
     public void execute() throws Exception {
 
-        resultObject = WebServiceWrapper.search("");
+        resultObject = WebServiceWrapper.search(query);
     }
 
     @Override

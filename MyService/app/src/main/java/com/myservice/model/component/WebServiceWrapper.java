@@ -107,7 +107,7 @@ public class WebServiceWrapper {
         HttpURLConnection conn = null;
 
         try {
-            URL url = new URL("http://myservice-cecode.rhcloud.com/api/advertisements");
+            URL url = new URL("http://myservice-cecode.rhcloud.com/api/advertisements?query=" + query);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
