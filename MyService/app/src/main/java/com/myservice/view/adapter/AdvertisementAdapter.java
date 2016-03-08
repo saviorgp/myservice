@@ -2,7 +2,6 @@ package com.myservice.view.adapter;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,26 +15,17 @@ import java.util.ArrayList;
 
 public class AdvertisementAdapter extends ArrayAdapter<Advertisement> {
 
-    private ArrayList<Advertisement> advertisementList;
     private LayoutInflater inflater;
 
-    public AdvertisementAdapter(Context context, int textViewResourceId, ArrayList<Advertisement> advertisementList) {
-        super(context, textViewResourceId, advertisementList);
+    public AdvertisementAdapter(Context context, ArrayList<Advertisement> advertisementList) {
+        super(context, R.layout.item_service, advertisementList);
 
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.advertisementList = new ArrayList<Advertisement>();
-        this.advertisementList.addAll(advertisementList);
     }
 
     private class ViewHolder {
         TextView title;
         TextView description;
-    }
-
-    public void add(Advertisement advertisement){
-        Log.v("Serviço", advertisement.getTitle());
-
-        this.advertisementList.add(advertisement);
     }
 
     @Override
@@ -59,7 +49,7 @@ public class AdvertisementAdapter extends ArrayAdapter<Advertisement> {
             holder = (ViewHolder) view.getTag();
         }
 
-        Advertisement advertisement = this.advertisementList.get(position);
+        Advertisement advertisement = getItem(position);
         holder.title.setText(advertisement.getTitle());
         holder.description.setText(advertisement.getDescription());
 

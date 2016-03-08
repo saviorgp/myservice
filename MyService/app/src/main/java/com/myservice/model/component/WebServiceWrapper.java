@@ -101,13 +101,13 @@ public class WebServiceWrapper {
         }
     }
 
-    public static JSONObject search(String query) throws Exception{
+    public static JSONObject search(String query, Integer current_page) throws Exception{
 
         StringBuilder result = new StringBuilder();
         HttpURLConnection conn = null;
 
         try {
-            URL url = new URL("http://myservice-cecode.rhcloud.com/api/advertisements?query=" + query);
+            URL url = new URL("http://myservice-cecode.rhcloud.com/api/advertisements?page=" + current_page +"&query=" + query);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 

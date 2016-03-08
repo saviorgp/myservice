@@ -2,7 +2,6 @@ package com.myservice.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -12,6 +11,7 @@ import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
 import com.myservice.model.transaction.TransactionTask;
 import com.myservice.utils.AndroidUtils;
+import com.myservice.utils.EndlessScrollListener;
 import com.myservice.view.adapter.AdvertisementAdapter;
 
 import org.json.JSONArray;
@@ -26,33 +26,54 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
     private JSONObject resultObject = null;
     private ListView listView;
     private String query = "";
+    private Integer current_page = 1;
+    private ArrayList<Advertisement> advertisementArrayList  = null;
+    private AdvertisementAdapter adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_services_search);
-        listView = (ListView)findViewById(R.id.listService);
 
         query = getIntent().getStringExtra("QUERY");
 
         ((TextView)findViewById(R.id.txt_query)).setText(query);
+
+
+
+        advertisementArrayList  = new ArrayList<>();
+        adapter = new AdvertisementAdapter(this, advertisementArrayList);
+
+        listView = (ListView)findViewById(R.id.listService);
+        listView.setAdapter(adapter);
+        listView.setOnScrollListener(new EndlessScrollListener(10) {
+
+            @Override
+            public void loadMore(int page, int totalItemsCount) {
+                if(totalItemsCount > 0){
+
+                    current_page = page;
+                    startTransacao(ServicesSearchActivity.this);
+                }
+            }
+        });
 
         startTransacao(this);
     }
 
     @Override
     public void execute() throws Exception {
-
-        resultObject = WebServiceWrapper.search(query);
+        resultObject = WebServiceWrapper.search(query, current_page);
     }
 
     @Override
     public void updateView() {
 
-        ArrayList<Advertisement> advertisementArrayList  = new ArrayList<>();
         if(resultObject != null) {
 
             try {
+                current_page = resultObject.getInt("current_page");
                 JSONArray data = resultObject.getJSONArray("data");
 
                 for (int i = 0; i < data.length(); i++) {
@@ -65,8 +86,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
                     advertisementArrayList.add(advertisement);
                 }
 
-                listView.setAdapter(new AdvertisementAdapter(this, R.id.listService, advertisementArrayList));
-                listView.invalidateViews();
+                adapter.addAll(advertisementArrayList);
 
             } catch (JSONException e) {
                 e.printStackTrace();
