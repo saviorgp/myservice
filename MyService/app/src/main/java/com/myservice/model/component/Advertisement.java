@@ -11,6 +11,7 @@ public class Advertisement {
     private Date expiration_at;
     private BigDecimal price;
     private Boolean visible;
+    private UserVO user;
 
     public Integer getId() {
         return id;
@@ -58,5 +59,13 @@ public class Advertisement {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public UserVO getUser() {
+        return user;
+    }
+
+    public void setUser(UserVO user) {
+        this.user = user;
     }
 }

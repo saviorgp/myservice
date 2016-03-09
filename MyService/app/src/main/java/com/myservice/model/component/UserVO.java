@@ -1,5 +1,8 @@
 package com.myservice.model.component;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by AlexGP on 21/01/2016.
  */
@@ -14,6 +17,20 @@ public class UserVO {
     private String celPhone;
     private String phone;
     private String address;
+    private UserVO user;
+
+    public UserVO(){}
+
+    public  UserVO(JSONObject userObj){
+        try {
+            this.setName(userObj.getString("name"));
+            this.setLastName(userObj.getString("last_name"));
+            this.setEmail(userObj.getString("email"));
+            this.setPhone(userObj.getString("mobile_phone"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     public String getName() {
         return name;
@@ -85,5 +102,13 @@ public class UserVO {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public UserVO getUser() {
+        return user;
+    }
+
+    public void setUser(UserVO user) {
+        this.user = user;
     }
 }

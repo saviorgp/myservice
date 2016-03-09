@@ -50,7 +50,7 @@ public class AdvertisementAdapter extends ArrayAdapter<Advertisement> {
         }
 
         Advertisement advertisement = getItem(position);
-        holder.title.setText(advertisement.getTitle());
+        holder.title.setText(advertisement.getUser().getName() + " " + advertisement.getUser().getLastName());
         holder.description.setText(advertisement.getDescription());
 
         return view;

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.myservice.R;
 import com.myservice.model.component.Advertisement;
+import com.myservice.model.component.UserVO;
 import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
 import com.myservice.model.transaction.TransactionTask;
@@ -29,6 +30,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
     private Integer current_page = 1;
     private ArrayList<Advertisement> advertisementArrayList  = null;
     private AdvertisementAdapter adapter = null;
+    private Integer total = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +75,16 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         if(resultObject != null) {
 
             try {
+                total = resultObject.getInt("total");
                 current_page = resultObject.getInt("current_page");
                 JSONArray data = resultObject.getJSONArray("data");
 
                 for (int i = 0; i < data.length(); i++) {
 
+                    UserVO userVO = new UserVO(data.getJSONObject(i).getJSONObject("user"));
                     Advertisement advertisement = new Advertisement();
 
+                    advertisement.setUser(userVO);
                     advertisement.setTitle(data.getJSONObject(i).getString("title"));
                     advertisement.setDescription(data.getJSONObject(i).getString("description"));
 
