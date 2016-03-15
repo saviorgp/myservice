@@ -56,4 +56,6 @@
     <string name="action_bar_search">Buscar serviços e contatos</string>
     <string name="wait">Buscar serviços e contatos</string>
 
+    <string name="descricao_servico">Descrição do Serviço:</string>
+
 </resources>

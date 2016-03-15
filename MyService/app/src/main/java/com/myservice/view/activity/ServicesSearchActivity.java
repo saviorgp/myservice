@@ -23,9 +23,7 @@ import java.util.ArrayList;
 
 public class ServicesSearchActivity extends AppCompatActivity implements ITransaction {
 
-    private TransactionTask task;
     private JSONObject resultObject = null;
-    private ListView listView;
     private String query = "";
     private Integer current_page = 1;
     private ArrayList<Advertisement> advertisementArrayList  = null;
@@ -42,18 +40,16 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
 
         ((TextView)findViewById(R.id.txt_query)).setText(query);
 
-
-
         advertisementArrayList  = new ArrayList<>();
         adapter = new AdvertisementAdapter(this, advertisementArrayList);
 
-        listView = (ListView)findViewById(R.id.listService);
+        ListView listView = (ListView) findViewById(R.id.listService);
         listView.setAdapter(adapter);
         listView.setOnScrollListener(new EndlessScrollListener(10) {
 
             @Override
             public void loadMore(int page, int totalItemsCount) {
-                if(totalItemsCount > 0){
+                if (totalItemsCount > 0) {
 
                     current_page = page;
                     startTransacao(ServicesSearchActivity.this);
@@ -104,7 +100,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         boolean redeOk = AndroidUtils.isNetworkAvailable(this);
 
         if (redeOk) {
-            task = new TransactionTask(this, transacao, R.string.wait);
+            TransactionTask task = new TransactionTask(this, transacao, R.string.wait);
             task.execute();
         } else {
             AndroidUtils.alertDialog(this, "Erro de net");
