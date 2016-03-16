@@ -36,6 +36,11 @@
             android:label="@string/title_activity_services_search"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".view.activity.ContactActivity"
+            android:label="@string/title_activity_services_search"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".view.activity.AddUserActivity" />
         <activity android:name=".view.activity.ForgotPasswdActivity" />
         <activity android:name=".view.activity.ResetPasswordActivity" >

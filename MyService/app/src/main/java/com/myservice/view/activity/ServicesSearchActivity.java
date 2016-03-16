@@ -1,7 +1,10 @@
 package com.myservice.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -54,6 +57,16 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
                     current_page = page;
                     startTransacao(ServicesSearchActivity.this);
                 }
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,   long id) {
+                Intent it = new Intent(ServicesSearchActivity.this, ContactActivity.class);
+                       it.putExtra("ADVERTISEMENT",advertisementArrayList.get(position));
+
+                startActivity(it);
             }
         });
 

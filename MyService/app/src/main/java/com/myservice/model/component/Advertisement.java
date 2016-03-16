@@ -1,9 +1,10 @@
 package com.myservice.model.component;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Advertisement {
+public class Advertisement implements Serializable {
 
     private Integer id;
     private String title;

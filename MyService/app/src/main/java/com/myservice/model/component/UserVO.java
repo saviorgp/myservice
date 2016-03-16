@@ -3,10 +3,12 @@ package com.myservice.model.component;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by AlexGP on 21/01/2016.
  */
-public class UserVO {
+public class UserVO implements Serializable {
 
     private String name;
     private String lastName;
