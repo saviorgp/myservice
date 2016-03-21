@@ -67,6 +67,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
 
                     if(adapter.getCount() <  total){
 
+                        current_page++;
                         isLoading = true;
                         startTransacao(ServicesSearchActivity.this);
                     }
