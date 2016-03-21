@@ -28,6 +28,7 @@ public class ContactActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.txt_contact_phone)).setText(advertisement.getUser().getPhone());
             ((TextView) findViewById(R.id.txt_contact_whatsapp)).setText(advertisement.getUser().getCelPhone());
             ((TextView) findViewById(R.id.txt_contact_descricao)).setText(advertisement.getDescription());
+            ((TextView) findViewById(R.id.txt_contact_location)).setText(advertisement.getUser().getAddress());
         }
     }
 }

@@ -3,7 +3,9 @@ package com.myservice.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
     private ArrayList<Advertisement> advertisementArrayList  = null;
     private AdvertisementAdapter adapter = null;
     private Integer total = 0;
+    public boolean isLoading = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +49,41 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         advertisementArrayList  = new ArrayList<>();
         adapter = new AdvertisementAdapter(this, advertisementArrayList);
 
-        ListView listView = (ListView) findViewById(R.id.listService);
-        listView.setAdapter(adapter);
-        listView.setOnScrollListener(new EndlessScrollListener(10) {
+        final ListView listView = (ListView) findViewById(R.id.listService);
+
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
 
             @Override
-            public void loadMore(int page, int totalItemsCount) {
-                if (totalItemsCount > 0) {
+            public void onScroll(AbsListView  view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
-                    current_page = page;
-                    startTransacao(ServicesSearchActivity.this);
+                int lastIndexInScreen = visibleItemCount + firstVisibleItem;
+
+                if (lastIndexInScreen>= totalItemCount && !isLoading) {
+
+                    if(adapter.getCount() <  total){
+
+                        isLoading = true;
+                        startTransacao(ServicesSearchActivity.this);
+                    }
                 }
+
             }
         });
 
+        listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,   long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent it = new Intent(ServicesSearchActivity.this, ContactActivity.class);
-                       it.putExtra("ADVERTISEMENT",advertisementArrayList.get(position));
+                it.putExtra("ADVERTISEMENT", advertisementArrayList.get(position));
 
                 startActivity(it);
             }
@@ -97,10 +116,11 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
                     advertisement.setTitle(data.getJSONObject(i).getString("title"));
                     advertisement.setDescription(data.getJSONObject(i).getString("description"));
 
-                    advertisementArrayList.add(advertisement);
+                    adapter.add(advertisement);
                 }
 
-                adapter.addAll(advertisementArrayList);
+                adapter.notifyDataSetChanged();
+                isLoading=false;
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -41,4 +41,6 @@ public abstract class EndlessScrollListener  implements AbsListView.OnScrollList
         }
     }
 
+
+
 }
