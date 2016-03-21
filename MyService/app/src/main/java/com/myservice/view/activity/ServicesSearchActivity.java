@@ -3,7 +3,6 @@ package com.myservice.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -17,7 +16,6 @@ import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
 import com.myservice.model.transaction.TransactionTask;
 import com.myservice.utils.AndroidUtils;
-import com.myservice.utils.EndlessScrollListener;
 import com.myservice.view.adapter.AdvertisementAdapter;
 
 import org.json.JSONArray;
