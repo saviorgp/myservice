@@ -1,219 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:drawable/screen_background_light_transparent"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/dark_blue"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/menu_left_back"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@color/transparente"
-                android:src="@drawable/ic_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/txt_toolbar_user_name"
-                android:layout_marginLeft="35dp"
-                android:gravity="center_vertical"
-                android:text="Joao Da Silva"
-                android:layout_toRightOf="@+id/menu_left_search"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:theme="@style/Text_25_White"/>
-
-
-            <ImageButton
-                android:id="@+id/bt_toolbar_search"
-                android:layout_toLeftOf="@+id/bt_toolbar_more"
-                android:layout_centerVertical="true"
-                android:background="@color/transparente"
-                android:src="@drawable/ic_search_white"
-                android:layout_marginRight="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageButton
-                android:id="@+id/bt_toolbar_more"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@color/transparente"
-                android:src="@drawable/ic_more"
-                android:layout_marginRight="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
+    android:fillViewport="true">
 
     <LinearLayout
-        android:id="@+id/block_contact_user_name"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_below="@+id/toolbar"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_marginRight="20dp"
-            android:src="@drawable/img_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
 
-                <TextView
-                    style="@style/Text_25"
-                    android:id="@+id/txt_item_title"
-                    android:text="João da Silva"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <ImageView
+                android:scaleType="fitXY"
+                android:src="@drawable/img_contact"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-                <TextView
-                    android:id="@+id/txt_item_description"
-                    android:layout_marginTop="5dp"
-                    style="@style/Text_12"
-                    android:text="mecanico"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/dark_blue"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/menu_left_back"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:background="@color/transparente"
+                        android:src="@drawable/ic_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/txt_toolbar_user_name"
+                        android:layout_marginLeft="35dp"
+                        android:gravity="center_vertical"
+                        android:text="Joao Da Silva"
+                        android:layout_toRightOf="@+id/menu_left_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:theme="@style/Text_25_White"/>
+
+
+                    <ImageButton
+                        android:id="@+id/bt_toolbar_search"
+                        android:layout_toLeftOf="@+id/bt_toolbar_more"
+                        android:layout_centerVertical="true"
+                        android:background="@color/transparente"
+                        android:src="@drawable/ic_search_white"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageButton
+                        android:id="@+id/bt_toolbar_more"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@color/transparente"
+                        android:src="@drawable/ic_more"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/block_name"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/Text_25"
+                        android:id="@+id/txt_item_title"
+                        android:text="João da Silva"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/txt_item_description"
+                        android:layout_marginTop="5dp"
+                        style="@style/Text_12"
+                        android:text="Mecanico Automotivo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
                 <RatingBar
-                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
                     android:numStars="5"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-        </LinearLayout>
+            </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_margin="15dp"
+                android:id="@+id/block_icons"
+                android:orientation="horizontal"
+                android:layout_below="@+id/block_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageButton
+                    android:id="@+id/ic_contact_phone"
+                    android:src="@drawable/ic_phone"
+                    android:background="@android:drawable/screen_background_light_transparent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/ic_contact_whatsapp"
+                    android:src="@drawable/ic_whatsapp"
+                    android:background="@android:drawable/screen_background_light_transparent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/ic_contact_location"
+                    android:src="@drawable/ic_location_grey"
+                    android:background="@android:drawable/screen_background_light_transparent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/ic_contact_email"
+                    android:src="@drawable/ic_email"
+                    android:background="@android:drawable/screen_background_light_transparent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_below="@+id/block_icons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/static_txt_descricao_servico"
+                    android:layout_margin="10dp"
+                    android:text="@string/descricao_servico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/txt_contact_descricao"
+                    android:layout_margin="10dp"
+                    android:text="É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de uma página quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de letras, ao contrário de Conteúdo aqui, conteúdo aqui, fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo padrão, e uma rápida busca por 'lorem ipsum' mostra vários websites ainda em sua fase de construção."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
     </LinearLayout>
 
-    <!-- contact email-->
-    <RelativeLayout
-        android:id="@+id/block_contect_user_email"
-        android:layout_below="@+id/block_contact_user_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/ic_contact_email"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txt_contact_email"
-            android:layout_margin="10dp"
-            android:text="joao.carlos@emil.com"
-            android:layout_toRightOf="@+id/ic_contact_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/block_contect_user_phone_number"
-        android:layout_below="@+id/block_contect_user_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/ic_contact_phone"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txt_contact_phone"
-            android:layout_margin="10dp"
-            android:text="(85)8888-88888"
-            android:layout_toRightOf="@+id/ic_contact_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/block_contect_user_whatsapp"
-        android:layout_below="@+id/block_contect_user_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/ic_contact_whatsapp"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_whatsapp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txt_contact_whatsapp"
-            android:layout_margin="10dp"
-            android:text="(85)8888-88888"
-            android:layout_toRightOf="@+id/ic_contact_whatsapp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/block_contect_user_location"
-        android:layout_below="@+id/block_contect_user_whatsapp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/ic_contact_location"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_location_grey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txt_contact_location"
-            android:layout_margin="10dp"
-            android:text="Rua 24 de Maio, 2015, Centro Fortaleza, CE"
-            android:layout_toRightOf="@+id/ic_contact_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/static_txt_descricao_servico"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/block_contect_user_location"
-        android:text="@string/descricao_servico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/txt_contact_descricao"
-        android:layout_below="@+id/static_txt_descricao_servico"
-        android:layout_margin="10dp"
-        android:text="É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de uma página quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de letras, ao contrário de Conteúdo aqui, conteúdo aqui, fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo padrão, e uma rápida busca por 'lorem ipsum' mostra vários websites ainda em sua fase de construção."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-</RelativeLayout>
+</ScrollView>

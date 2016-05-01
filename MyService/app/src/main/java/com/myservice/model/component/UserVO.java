@@ -28,7 +28,7 @@ public class UserVO implements Serializable {
             this.setName(userObj.getString("name"));
             this.setLastName(userObj.getString("last_name"));
             this.setEmail(userObj.getString("email"));
-            this.setPhone(userObj.getString("mobile_phone"));
+            this.setCelPhone(userObj.getString("mobile_phone"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

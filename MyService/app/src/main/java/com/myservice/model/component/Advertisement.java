@@ -13,6 +13,7 @@ public class Advertisement implements Serializable {
     private BigDecimal price;
     private Boolean visible;
     private UserVO user;
+    private Category category;
 
     public Integer getId() {
         return id;
@@ -68,5 +69,13 @@ public class Advertisement implements Serializable {
 
     public void setUser(UserVO user) {
         this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

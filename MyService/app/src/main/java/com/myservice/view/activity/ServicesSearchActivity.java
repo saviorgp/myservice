@@ -1,16 +1,23 @@
 package com.myservice.view.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.myservice.R;
 import com.myservice.model.component.Advertisement;
+import com.myservice.model.component.Category;
 import com.myservice.model.component.UserVO;
 import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
@@ -43,6 +50,33 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         query = getIntent().getStringExtra("QUERY");
 
         ((TextView)findViewById(R.id.txt_query)).setText(query);
+
+        findViewById(R.id.bt_toolbar_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSearchDialog();
+            }
+        });
+
+        initializeListView();
+    }
+
+    private void showSearchDialog(){
+
+        Dialog dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_search);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+        window.setAttributes(wlp);
+        dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        dialog.show();
+    }
+
+    private void initializeListView(){
 
         advertisementArrayList  = new ArrayList<>();
         adapter = new AdvertisementAdapter(this, advertisementArrayList);
@@ -109,9 +143,12 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
                 for (int i = 0; i < data.length(); i++) {
 
                     UserVO userVO = new UserVO(data.getJSONObject(i).getJSONObject("user"));
+                    Category category = new Category(data.getJSONObject(i).getJSONObject("category"));
+
                     Advertisement advertisement = new Advertisement();
 
                     advertisement.setUser(userVO);
+                    advertisement.setCategory(category);
                     advertisement.setTitle(data.getJSONObject(i).getString("title"));
                     advertisement.setDescription(data.getJSONObject(i).getString("description"));
 
