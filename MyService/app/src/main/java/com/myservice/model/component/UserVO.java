@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 public class UserVO implements Serializable {
 
+    private Integer id;
     private String name;
     private String lastName;
     private String email;
@@ -25,6 +26,7 @@ public class UserVO implements Serializable {
 
     public  UserVO(JSONObject userObj){
         try {
+            this.setId(userObj.getInt("id"));
             this.setName(userObj.getString("name"));
             this.setLastName(userObj.getString("last_name"));
             this.setEmail(userObj.getString("email"));
@@ -112,5 +114,13 @@ public class UserVO implements Serializable {
 
     public void setUser(UserVO user) {
         this.user = user;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

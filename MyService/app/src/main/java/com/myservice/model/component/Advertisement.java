@@ -9,6 +9,7 @@ public class Advertisement implements Serializable {
     private Integer id;
     private String title;
     private String description;
+    private String phone;
     private Date expiration_at;
     private BigDecimal price;
     private Boolean visible;
@@ -77,5 +78,13 @@ public class Advertisement implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

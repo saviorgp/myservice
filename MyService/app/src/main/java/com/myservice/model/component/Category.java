@@ -7,8 +7,9 @@ import java.io.Serializable;
 
 public class Category implements Serializable {
 
-    String name;
-    Category parent;
+    private Integer id;
+    private String name;
+    private Category parent;
 
     public Category(){}
 
@@ -18,6 +19,7 @@ public class Category implements Serializable {
 
     public  Category(JSONObject categoryObj){
         try {
+            this.setId(categoryObj.getInt("id"));
             this.setName(categoryObj.getString("name"));
 
         } catch (JSONException e) {
@@ -39,6 +41,14 @@ public class Category implements Serializable {
 
     public void setParent(Category parent) {
         this.parent = parent;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

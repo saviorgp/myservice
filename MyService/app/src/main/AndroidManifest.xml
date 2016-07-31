@@ -39,6 +39,7 @@
             android:name=".view.activity.ContactActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".view.activity.AddUserActivity" />
+        <activity android:name=".view.activity.AddServiceActivity" />
         <activity android:name=".view.activity.ForgotPasswdActivity" />
         <activity android:name=".view.activity.ResetPasswordActivity" >
         </activity>

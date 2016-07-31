@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" android:id="@+id/group_feature1">
+        <item
+            android:id="@+id/nav_user"
+            android:icon="@drawable/ic_user_drawer"
+            android:title="Meus Dados" />
+        <item
+            android:id="@+id/nav_location"
+            android:icon="@drawable/ic_location_drawer"
+            android:title="Meu Endereço" />
+        <item
+            android:id="@+id/nav_my_service"
+            android:icon="@drawable/ic_my_service_drawer"
+            android:title="Meus Anúncios" />
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/group_feature2">
+        <item
+            android:id="@+id/nav_add_service"
+            android:icon="@drawable/ic_add_service_drawer"
+            android:title="Novo Anúncio" />
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/group_feature3">
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/ic_sair_drawer"
+            android:title="Sair" />
+    </group>
+
+</menu>
