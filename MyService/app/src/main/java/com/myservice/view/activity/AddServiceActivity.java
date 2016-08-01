@@ -142,7 +142,11 @@ public class AddServiceActivity extends AppCompatActivity implements ITransactio
 
             case 2:{
                 try {
-                    Log.i("ad", resultObject.getString("id"));
+
+                    if(resultObject.has("id")){
+                       int adId = resultObject.getInt("id");
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
