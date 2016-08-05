@@ -20,6 +20,10 @@ public class UserVO implements Serializable {
     private String celPhone;
     private String phone;
     private String address;
+    private String neighborhood;
+    private String zipCode;
+    private String number;
+    private String complement;
     private UserVO user;
 
     public UserVO(){}
@@ -122,5 +126,37 @@ public class UserVO implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
     }
 }

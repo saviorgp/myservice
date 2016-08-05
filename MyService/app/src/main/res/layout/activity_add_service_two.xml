@@ -88,7 +88,7 @@
 
                     <EditText
                         android:layout_marginTop="10dp"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:id="@+id/edt_rua_add_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -109,7 +109,7 @@
 
                     <EditText
                         android:layout_marginTop="10dp"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:id="@+id/edt_numero_add_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -129,7 +129,7 @@
 
             <EditText
                 android:layout_marginTop="10dp"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:id="@+id/edt_bairro_add_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -142,7 +142,7 @@
 
             <EditText
                 android:layout_marginTop="10dp"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:id="@+id/edt_complemento_add_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -168,7 +168,7 @@
 
                     <EditText
                         android:layout_marginTop="10dp"
-                        android:inputType="textPassword"
+                        android:inputType="text"
                         android:id="@+id/edt_estado_add_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -189,7 +189,7 @@
 
                     <EditText
                         android:layout_marginTop="10dp"
-                        android:inputType="textPassword"
+                        android:inputType="text"
                         android:id="@+id/edt_cidade_add_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

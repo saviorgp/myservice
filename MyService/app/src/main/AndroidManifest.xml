@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
+        android:name=".view.activity.MyServiceApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -41,6 +42,7 @@
         <activity android:name=".view.activity.AddUserActivity" />
         <activity android:name=".view.activity.AddServiceActivity" />
         <activity android:name=".view.activity.UploadImageServiceActivity" />
+        <activity android:name=".view.activity.AddUserHostActvity" />
         <activity android:name=".view.activity.ForgotPasswdActivity" />
         <activity android:name=".view.activity.ResetPasswordActivity" >
         </activity>

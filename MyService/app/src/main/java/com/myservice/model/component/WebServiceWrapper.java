@@ -67,7 +67,11 @@ public class WebServiceWrapper {
             json.put("city", user.getCity());
             json.put("state", user.getState());
             json.put("phone", user.getPhone());
-            json.put("neighborhood", user.getAddress());
+            json.put("neighborhood", user.getNeighborhood());
+            json.put("street", user.getAddress());
+            json.put("number", user.getNumber());
+            json.put("complement", user.getNeighborhood());
+            json.put("zip_code", user.getZipCode());
 
             HttpPost post = new HttpPost(SERVER_URL + CMD_CREATE_LOGIN);
             post.addHeader(HTTP.CONTENT_TYPE, "application/json");
