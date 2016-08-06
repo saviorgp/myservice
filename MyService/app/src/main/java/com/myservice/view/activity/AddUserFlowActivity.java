@@ -12,7 +12,6 @@ import com.myservice.utils.WizardValidate;
 
 import org.codepond.wizardroid.WizardFlow;
 import org.codepond.wizardroid.WizardFragment;
-import org.codepond.wizardroid.layouts.BasicWizardLayout;
 
 public class AddUserFlowActivity extends WizardFragment implements View.OnClickListener {
 
@@ -52,10 +51,7 @@ public class AddUserFlowActivity extends WizardFragment implements View.OnClickL
                 .create();
     }
 
-    /**
-     * Triggered when the wizard is completed.
-     * Overriding this method is optional.
-     */
+
     @Override
     public void onWizardComplete() {
         getActivity().finish();
@@ -75,13 +71,14 @@ public class AddUserFlowActivity extends WizardFragment implements View.OnClickL
         updateWizardControls();
     }
 
-    /**
-     * Updates the UI according to current step position
-     */
     private void updateWizardControls() {
+
+        previousButton.setText(R.string.anterior);
+
         previousButton.setEnabled(!wizard.isFirstStep());
-        nextButton.setText(wizard.isLastStep()
-                ? R.string.action_finish
-                : R.string.action_next);
+
+        nextButton.setEnabled(!wizard.isLastStep());
+
+        nextButton.setText(wizard.isLastStep() ? R.string.finalizar: R.string.proximo);
     }
 }
