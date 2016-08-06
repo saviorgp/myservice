@@ -48,14 +48,20 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email de confirmação" />
+            style="@style/Text_25_Dark_blue"
+            android:text="Email de confirmação"
+            android:paddingTop="50dp"
+            android:paddingLeft="20dp" />
 
 
         <TextView
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Em instantes você recebera um email de confirmação com seu email" />
+            style="@style/Text_12"
+            android:text="Em instantes você recebera um email de confirmação com seu email"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp" />
 
 
 

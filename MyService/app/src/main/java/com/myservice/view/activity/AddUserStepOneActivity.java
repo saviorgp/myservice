@@ -34,6 +34,9 @@ public class AddUserStepOneActivity extends WizardStep implements Validator.Vali
     private EditText nome;
 
     @NotEmpty
+    private EditText telefone;
+
+    @NotEmpty
     @Email
     private EditText email;
 
@@ -59,6 +62,7 @@ public class AddUserStepOneActivity extends WizardStep implements Validator.Vali
         email = (EditText)v.findViewById(R.id.edt_email_add_user);
         password = (EditText)v.findViewById(R.id.edt_senha_add_user);
         confirmPassword = (EditText)v.findViewById(R.id.edt_senha_confirm_add_user);
+        telefone = (EditText)v.findViewById(R.id.edt_telefone_add_user);
 
         v.findViewById(R.id.bt_add_anuncio_close).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +95,7 @@ public class AddUserStepOneActivity extends WizardStep implements Validator.Vali
         user.setName(nome.getText().toString());
         user.setEmail(email.getText().toString());
         user.setPassword(password.getText().toString());
+        user.setPhone(telefone.getText().toString());
     }
 
     @Override

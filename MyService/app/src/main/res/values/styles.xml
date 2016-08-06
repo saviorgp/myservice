@@ -29,6 +29,11 @@
         <item name="android:textSize">25sp</item>
     </style>
 
+    <style name="Text_25_Dark_blue">
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <style name="Text_25_White">
         <item name="android:textColor">@color/branco</item>
         <item name="android:textSize">25sp</item>

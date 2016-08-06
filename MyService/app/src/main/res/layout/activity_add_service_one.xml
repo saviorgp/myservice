@@ -74,6 +74,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telefone" />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:inputType="phone"
+                android:id="@+id/edt_telefone_add_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
 
             <TextView
                 android:layout_marginTop="10dp"
