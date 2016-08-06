@@ -20,6 +20,7 @@ public class AddUserStepThreeActivity extends WizardStep {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.activity_add_service_three, container, false);
+
         v.findViewById(R.id.bt_add_anuncio_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

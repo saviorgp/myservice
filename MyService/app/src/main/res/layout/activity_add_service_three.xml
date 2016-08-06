@@ -38,7 +38,7 @@
 
         <ImageView
             android:background="#FFDB00"
-            android:src="@drawable/add_user_flow_one"
+            android:src="@drawable/add_user_flow_three"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
