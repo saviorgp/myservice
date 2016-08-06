@@ -64,6 +64,13 @@ public class AddUserStepTwoActivity extends WizardStep implements Validator.Vali
         cidade = (EditText)v.findViewById(R.id.edt_cidade_add_user);
         numero = (EditText)v.findViewById(R.id.edt_numero_add_user);
 
+        v.findViewById(R.id.bt_add_anuncio_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
+
         validator = new Validator(this);
         validator.setValidationListener(this);
 
