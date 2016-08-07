@@ -115,12 +115,25 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Telefone" />
+                android:text="Valor do Serviço" />
 
             <EditText
                 android:layout_marginTop="10dp"
-                android:inputType="text"
-                android:id="@+id/edt_telefone_add_service"
+                android:inputType="numberDecimal"
+                android:id="@+id/edt_price_add_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data de Expiração" />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:inputType="date"
+                android:id="@+id/edt_expiration_date_add_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

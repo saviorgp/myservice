@@ -1,7 +1,10 @@
 package com.myservice.model.component;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.text.format.DateFormat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.myservice.exceptions.CreateUserException;
 import com.myservice.exceptions.LoginException;
@@ -9,20 +12,33 @@ import com.myservice.model.Preferences;
 import com.myservice.utils.Constants;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by AlexGP on 01/04/2016.
@@ -361,6 +377,81 @@ public class WebServiceWrapper {
         return result;
     }
 
+    public static JSONObject createAd(Advertisement advertisement, Context ctx){
+
+        String token =   (String) Preferences.getPreferences(ctx).getSharedPreference(Constants.SESSION_TOKEN);
+
+        JSONObject result  = new JSONObject();
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost post = new HttpPost(SERVER_URL + CMD_CREATE_AD +  "?token=" + token);
+
+        MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+        try {
+            JSONObject json  = null;
+
+            entity.addPart("category_id", new StringBody(String.valueOf(advertisement.getCategory().getId())));
+            entity.addPart("title", new StringBody(advertisement.getTitle()));
+            entity.addPart("description", new StringBody(advertisement.getDescription()));
+            entity.addPart("price", new StringBody(String.valueOf(advertisement.getPrice())));
+            entity.addPart("expiration_at", new StringBody(DateFormat.format("dd/MM/yyyy", advertisement.getExpiration_at()).toString()));
+
+            if(advertisement.getPhoto() != null){
+                try{
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    advertisement.getPhoto().compress(Bitmap.CompressFormat.JPEG, 75, bos);
+                    byte[] data = bos.toByteArray();
+                    ByteArrayBody bab = new ByteArrayBody(data, advertisement.getTitle());
+                    entity.addPart("photos[]", bab);
+                }
+                catch(Exception e){
+                    entity.addPart("photos[]", new StringBody(""));
+                }
+            }
+
+            post.setEntity(entity);
+            HttpResponse response = httpclient.execute(post);
+
+            StringBuffer output = new StringBuffer();
+
+            if(response!=null){
+
+                InputStream in = response.getEntity().getContent(); //Get the data in the entity
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                System.out.println("Output from Server .... \n");
+                String line = "";
+                while ((line = br.readLine()) != null) {
+                    output.append(line);
+                    System.out.println(output);
+                }
+            }
+
+            if(response.getStatusLine().getStatusCode() == 412){
+                json = new JSONObject(output.toString());
+                throw new CreateUserException(json.getString(ERROR_REASON_DESC));
+            } else if(response.getStatusLine().getStatusCode() == LOGIN_INTERNAL_ERROR_CODE){
+                String msg = output.toString().replace("[","");
+                msg = msg.replace("]", "");
+                msg = msg.replaceAll("\"", "");
+                throw new CreateUserException(msg);
+            }
+
+            result =  new JSONObject(output.toString());
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CreateUserException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public static JSONObject createService(Advertisement advertisement, Context ctx){
 
         String token =
@@ -368,6 +459,7 @@ public class WebServiceWrapper {
         JSONObject result  = new JSONObject();
 
         try {
+
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
 
@@ -378,7 +470,6 @@ public class WebServiceWrapper {
             json.put("description", advertisement.getDescription());
             json.put("price", "0");
             json.put("expiration_at", "1/10/2020");
-            json.put("phone", advertisement.getPhone());
 
             HttpPost post = new HttpPost(SERVER_URL + CMD_CREATE_AD +  "?token=" + token);
             post.addHeader(HTTP.CONTENT_TYPE, "application/json");

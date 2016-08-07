@@ -1,5 +1,7 @@
 package com.myservice.model.component;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,12 +11,12 @@ public class Advertisement implements Serializable {
     private Integer id;
     private String title;
     private String description;
-    private String phone;
     private Date expiration_at;
     private BigDecimal price;
     private Boolean visible;
     private UserVO user;
     private Category category;
+    private Bitmap photo;
 
     public Integer getId() {
         return id;
@@ -80,11 +82,11 @@ public class Advertisement implements Serializable {
         this.category = category;
     }
 
-    public String getPhone() {
-        return phone;
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public Bitmap getPhoto() {
+        return photo;
     }
 }

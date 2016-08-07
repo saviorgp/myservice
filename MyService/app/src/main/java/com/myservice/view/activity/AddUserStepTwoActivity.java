@@ -8,7 +8,6 @@ import android.widget.EditText;
 
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.Digits;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.myservice.R;
 import com.myservice.helper.WebServiceHelper;
