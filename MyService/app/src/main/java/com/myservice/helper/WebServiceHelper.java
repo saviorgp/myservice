@@ -8,6 +8,8 @@ import com.myservice.model.component.UserVO;
 import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.utils.Constants;
 
+import org.json.JSONObject;
+
 /**
  * Created by AlexGP on 01/04/2016.
  */
@@ -17,8 +19,12 @@ public class WebServiceHelper {
     }
 
     public static void authenticateUser(UserVO userVO, Context ctx) throws Throwable {
-        String authToken = WebServiceWrapper.doAuthenticate(userVO);
-        Preferences.getPreferences(ctx).editPreference(Constants.SESSION_TOKEN, authToken);
+
+        JSONObject user = WebServiceWrapper.doAuthenticate(userVO);
+
+        Preferences.getPreferences(ctx).editPreference(Constants.USER_NAME, user.getString("name") + " " + user.getString("last_name"));
+        Preferences.getPreferences(ctx).editPreference(Constants.EMAIL, user.getString("email"));
+        Preferences.getPreferences(ctx).editPreference(Constants.SESSION_TOKEN, user.getString("token"));
     }
 
     public static void signupUser(UserVO userVO) throws Throwable {

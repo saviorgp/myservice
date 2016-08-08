@@ -107,6 +107,13 @@ public class AddServiceActivity extends AppCompatActivity implements ITransactio
             }
         });
 
+        findViewById(R.id.bt_add_anuncio_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         imgAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

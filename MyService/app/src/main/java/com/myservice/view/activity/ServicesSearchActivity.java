@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.myservice.R;
+import com.myservice.model.Preferences;
 import com.myservice.model.component.Advertisement;
 import com.myservice.model.component.Category;
 import com.myservice.model.component.UserVO;
@@ -29,6 +30,7 @@ import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
 import com.myservice.model.transaction.TransactionTask;
 import com.myservice.utils.AndroidUtils;
+import com.myservice.utils.Constants;
 import com.myservice.view.adapter.AdvertisementAdapter;
 
 import org.json.JSONArray;
@@ -96,6 +98,9 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ((TextView)navigationView.findViewById(R.id.drawer_user_name_info)).setText((String)Preferences.getPreferences(this).getSharedPreference(Constants.USER_NAME));
+        ((TextView)navigationView.findViewById(R.id.drawer_user_email_info)).setText((String)Preferences.getPreferences(this).getSharedPreference(Constants.EMAIL));
     }
 
     private void initializeListView(){

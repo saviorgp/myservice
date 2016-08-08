@@ -8,6 +8,8 @@ public final class Constants {
     public static final String PREF_RESET_PASSWD_TOKEN = "PREF_RESET_PASSWD_TOKEN";
     public static final String PREF_NEED_TO_RESET_PASSWD = "PREF_NEED_TO_RESET_PASSWD";
     public static final String SESSION_TOKEN = "SESSION_TOKEN";
+    public static final String USER_NAME = "USER_NAME";
+    public static final String EMAIL = "EMAIL";
 
     private Constants(){
     }

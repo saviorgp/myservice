@@ -207,8 +207,10 @@ public class WebServiceWrapper {
         return new JSONObject(result.toString());
     }
 
-    public static String doAuthenticate(UserVO user) throws Exception {
-        String authToken = null;
+    public static JSONObject doAuthenticate(UserVO user) throws Exception {
+
+        JSONObject userResponse = null;
+
         try {
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
@@ -251,13 +253,14 @@ public class WebServiceWrapper {
             }
 
             json = new JSONObject(output.toString());
-            authToken = json.getJSONObject("user").getString("token");
+            //user = json.getJSONObject("user").getString("token");
+            userResponse = json.getJSONObject("user");
 
         } catch(Throwable t) {
            throw t;
         }
         
-        return authToken;
+        return userResponse;
     }
 
     public static String doResetPassword(String email) throws Exception {
