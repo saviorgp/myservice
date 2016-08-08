@@ -403,13 +403,14 @@ public class WebServiceWrapper {
                     advertisement.getPhoto().compress(Bitmap.CompressFormat.JPEG, 75, bos);
                     byte[] data = bos.toByteArray();
                     ByteArrayBody bab = new ByteArrayBody(data, advertisement.getTitle());
-                    entity.addPart("photos[]", bab);
+                    entity.addPart("photo", bab);
                 }
                 catch(Exception e){
-                    entity.addPart("photos[]", new StringBody(""));
+                    entity.addPart("photo", new StringBody(""));
                 }
             }
 
+           //post.addHeader( "Content-Type", "multipart/form-data; ");
             post.setEntity(entity);
             HttpResponse response = httpclient.execute(post);
 

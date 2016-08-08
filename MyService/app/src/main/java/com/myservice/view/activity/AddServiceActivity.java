@@ -218,6 +218,7 @@ public class AddServiceActivity extends AppCompatActivity implements ITransactio
 
                     if(resultObject.has("id")){
                        int adId = resultObject.getInt("id");
+                        finish();
                     }
 
                 } catch (JSONException e) {
