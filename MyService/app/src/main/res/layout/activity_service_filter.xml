@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:background="@color/dark_blue"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp">
+
+
+            <ImageButton
+                android:id="@+id/bt_adv_filter_close"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:background="@null"
+                android:src="@drawable/ic_close" />
+
+
+            <TextView
+                style="@style/Text_25_White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="40dp"
+                android:text="Filtrar Anúncios" />
+
+            <ImageButton
+                android:id="@+id/bt_adv_filer_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:src="@drawable/ic_apply" />
+
+        </RelativeLayout>
+
+
+        <Spinner
+            android:style="@style/spinner_style"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/sp_adv_categoria"
+            android:prompt="@string/categoria"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+        </Spinner>
+
+        <Spinner
+            android:style="@style/spinner_style"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/sp_adv_subcategoria"
+            android:prompt="@string/sub_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+        </Spinner>
+
+        <EditText
+            android:inputType="text"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/edit_text_rounded"
+            android:id="@+id/edt_adv_filter_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05" />
+
+        <TextView
+            style="@style/Text_25_White"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Preço"/>
+
+        <SeekBar
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seek_preco"
+            android:layout_gravity="center_horizontal"
+            android:indeterminate="false"
+            android:max="3000" />
+
+
+    </LinearLayout>
+
+</ScrollView>

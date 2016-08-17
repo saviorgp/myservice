@@ -41,6 +41,8 @@ import java.util.ArrayList;
 
 public class ServicesSearchActivity extends AppCompatActivity implements ITransaction,  NavigationView.OnNavigationItemSelectedListener {
 
+    private static final int SERVICE_FILTER = 10;
+
     private JSONObject resultObject = null;
     private String query = "";
     private Integer current_page = 1;
@@ -71,18 +73,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
     }
 
     private void showSearchDialog(){
-
-        Dialog dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_search);
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-
-        wlp.gravity = Gravity.CENTER;
-        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
-        window.setAttributes(wlp);
-        dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        dialog.show();
+        startActivityForResult(new Intent(this, ServiceFilterActivity.class), SERVICE_FILTER);
     }
 
     private void initializeDrawer(){
@@ -258,5 +249,13 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == SERVICE_FILTER && resultCode == RESULT_OK){
+        }
     }
 }

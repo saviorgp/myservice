@@ -511,4 +511,46 @@ public class WebServiceWrapper {
 
         return result;
     }
+
+    public static JSONObject logout(Context ctx) throws Exception{
+
+        String token =
+                (String) Preferences.getPreferences(ctx).getSharedPreference(Constants.SESSION_TOKEN);
+        JSONObject result  = new JSONObject();
+
+        HttpURLConnection conn = null;
+
+        try {
+            URL url = new URL(SERVER_URL + "logout" +  "?token=" + token);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            if(conn.getResponseCode() == 200) {
+
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                BufferedReader r = new BufferedReader(new InputStreamReader(in));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = r.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                return new JSONObject(sb.toString());
+            }
+            else{
+                Log.e("BILA", String.valueOf(conn.getResponseCode()));
+            }
+
+        }catch( Exception e) {
+            e.printStackTrace();
+            Log.e("WEB", e.getMessage());
+        }
+        finally {
+            conn.disconnect();
+        }
+
+
+        return new JSONObject(result.toString());
+
+    }
 }

@@ -63,5 +63,7 @@
     <string name="proximo">Próximo</string>
     <string name="anterior">Anterior</string>
     <string name="finalizar">Finalizar</string>
+    <string name="categoria">Categoria</string>
+    <string name="sub_categoria">Subcategoria</string>
 
 </resources>
