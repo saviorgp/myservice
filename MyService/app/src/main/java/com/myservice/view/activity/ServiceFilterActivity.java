@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
@@ -39,12 +40,17 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
     private Spinner subcateria;
     private SeekBar preco;
     private EditText localizacao;
+    private Boolean orderDate;
+    private Boolean orderPrice;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_filter);
+
+        orderDate = false;
+        orderPrice = false;
 
         categoria = (Spinner)findViewById(R.id.sp_adv_categoria);
         subcateria = (Spinner)findViewById(R.id.sp_adv_subcategoria);
@@ -58,6 +64,50 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
             @Override
             public void onClick(View view) {
                 createFilter();
+            }
+        });
+
+        findViewById(R.id.bt_adv_filter_close).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.bt_order_filter_less).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderDate = false;
+                ((ImageButton)findViewById(R.id.bt_order_filter_less)).setImageResource(R.drawable.bt_filter_less_recent_enable);
+                ((ImageButton)findViewById(R.id.bt_order_filter_more)).setImageResource(R.drawable.bt_filter_less_recent_disable);
+            }
+        });
+
+        findViewById(R.id.bt_order_filter_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderDate = true;
+                ((ImageButton)findViewById(R.id.bt_order_filter_less)).setImageResource(R.drawable.bt_filter_less_recent_disable);
+                ((ImageButton)findViewById(R.id.bt_order_filter_more)).setImageResource(R.drawable.bt_filter_less_recent_enable);
+            }
+        });
+
+        findViewById(R.id.bt_order_low_price).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderPrice = false;
+                ((ImageButton)findViewById(R.id.bt_order_low_price)).setImageResource(R.drawable.bt_filter_lowest_price_enable);
+                ((ImageButton)findViewById(R.id.bt_order_filter_more)).setImageResource(R.drawable.bt_filter_lowest_price_disable);
+            }
+        });
+
+        findViewById(R.id.bt_order_big_price).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderPrice = true;
+                ((ImageButton)findViewById(R.id.bt_order_low_price)).setImageResource(R.drawable.bt_filter_lowest_price_disable);
+                ((ImageButton)findViewById(R.id.bt_order_filter_more)).setImageResource(R.drawable.bt_filter_lowest_price_enable);
             }
         });
 
@@ -172,6 +222,8 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
         filterVO.setCategoriaID(((Category)subcateria.getSelectedItem()).getId());
         filterVO.setLocalizacao(localizacao.getText().toString());
         filterVO.setValor(preco.getProgress());
+        filterVO.setDataOrder(orderDate);
+        filterVO.setPrecoOrder(orderPrice);
 
         returnIntent.putExtra(FILTER, filterVO);
         setResult(Activity.RESULT_OK, returnIntent);
