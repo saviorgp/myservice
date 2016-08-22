@@ -6,7 +6,8 @@ public class FilterVO implements Serializable{
 
     private Integer categoriaID;
     private String localizacao;
-    private Integer valor;
+    private Integer minValor;
+    private Integer maxValor;
     private Boolean precoOrder;
     private Boolean dataOrder;
     private Boolean relevanciaOrder;
@@ -25,14 +26,6 @@ public class FilterVO implements Serializable{
 
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
-    }
-
-    public Integer getValor() {
-        return valor;
-    }
-
-    public void setValor(Integer valor) {
-        this.valor = valor;
     }
 
     public Boolean getPrecoOrder() {
@@ -57,5 +50,21 @@ public class FilterVO implements Serializable{
 
     public void setRelevanciaOrder(Boolean relevanciaOrder) {
         this.relevanciaOrder = relevanciaOrder;
+    }
+
+    public Integer getMinValor() {
+        return minValor;
+    }
+
+    public void setMinValor(Integer minValor) {
+        this.minValor = minValor;
+    }
+
+    public Integer getMaxValor() {
+        return maxValor;
+    }
+
+    public void setMaxValor(Integer maxValor) {
+        this.maxValor = maxValor;
     }
 }

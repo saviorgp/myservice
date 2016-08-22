@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/dark_blue"
     android:fillViewport="true">
 
@@ -83,14 +84,19 @@
             android:layout_marginTop="10dp"
             android:text="Preço" />
 
-        <SeekBar
+        <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+            android:layout_margin="10dp"
             android:id="@+id/seek_preco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:indeterminate="false"
-            android:max="3000" />
+            app:min_value="0"
+            app:max_value="1000"
+            app:bar_color="#FFFFFF"
+            app:bar_highlight_color="#FFDB00"
+            app:left_thumb_color="#FFDB00"
+            app:right_thumb_color="#FFDB00"
+            app:left_thumb_color_pressed="#FFE02F"
+            app:right_thumb_color_pressed="#FFE02F"/>
 
         <TextView
             style="@style/Text_25_White"

@@ -68,12 +68,30 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
             }
         });
 
+        findViewById(R.id.bt_toolbar_search_filter).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(ServicesSearchActivity.this, ServiceFilterActivity.class), SERVICE_FILTER);
+            }
+        });
+
         initializeDrawer();
         initializeListView();
     }
 
     private void showSearchDialog(){
-        startActivityForResult(new Intent(this, ServiceFilterActivity.class), SERVICE_FILTER);
+
+        Dialog dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_search);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+        window.setAttributes(wlp);
+        dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        dialog.show();
     }
 
     private void initializeDrawer(){
