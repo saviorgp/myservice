@@ -10,10 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 
-import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.myservice.R;
 import com.myservice.model.component.Category;
 import com.myservice.model.component.FilterVO;
@@ -39,7 +37,6 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
 
     private Spinner categoria;
     private Spinner subcateria;
-    private CrystalRangeSeekbar preco;
     private EditText localizacao;
     private Boolean orderDate;
     private Boolean orderPrice;
@@ -56,7 +53,6 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
         categoria = (Spinner)findViewById(R.id.sp_adv_categoria);
         subcateria = (Spinner)findViewById(R.id.sp_adv_subcategoria);
         localizacao = (EditText)findViewById(R.id.edt_adv_filter_location);
-        preco = (CrystalRangeSeekbar) findViewById(R.id.seek_preco);
 
         findViewById(R.id.bt_adv_filer_apply).setOnClickListener(new View.OnClickListener() {
 
@@ -220,8 +216,6 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
 
         filterVO.setCategoriaID(((Category)subcateria.getSelectedItem()).getId());
         filterVO.setLocalizacao(localizacao.getText().toString());
-        filterVO.setMinValor(preco.getSelectedMinValue().intValue());
-        filterVO.setMaxValor(preco.getSelectedMaxValue().intValue());
         filterVO.setDataOrder(orderDate);
         filterVO.setPrecoOrder(orderPrice);
 
