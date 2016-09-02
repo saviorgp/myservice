@@ -5,12 +5,29 @@
     android:background="@drawable/border_set"
     android:layout_margin="5dp">
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/img_service"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/sample_img_item"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <!-- Imagem do restaurante -->
+        <ImageView android:id="@+id/img"
+            android:layout_width="74dp"
+            android:layout_height="86dp"
+            android:src="@drawable/sample_img_item"
+            android:layout_gravity="center|center_vertical"
+            />
+        <!-- Barra de progresso enquanto carrega a imagem -->
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:gravity="center|center_vertical"
+            android:layout_marginRight="6dp"
+            style="@android:style/Widget.ProgressBar.Small"
+            />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_marginLeft="10dp"

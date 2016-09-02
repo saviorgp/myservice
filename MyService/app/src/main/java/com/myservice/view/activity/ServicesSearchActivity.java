@@ -26,6 +26,7 @@ import com.myservice.model.Preferences;
 import com.myservice.model.component.Advertisement;
 import com.myservice.model.component.Category;
 import com.myservice.model.component.FilterVO;
+import com.myservice.model.component.Image;
 import com.myservice.model.component.UserVO;
 import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
@@ -190,6 +191,12 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
                     advertisement.setCategory(category);
                     advertisement.setTitle(data.getJSONObject(i).getString("title"));
                     advertisement.setDescription(data.getJSONObject(i).getString("description"));
+
+                    JSONArray imagesData = data.getJSONObject(i).getJSONArray("images");
+
+                    for (int t = 0; t < imagesData.length(); t++) {
+                        advertisement.getImages().add( new Image(imagesData.getJSONObject(i).getLong("id"), imagesData.getJSONObject(i).getString("url")));
+                    }
 
                     adapter.add(advertisement);
                 }

@@ -4,7 +4,9 @@ import android.graphics.Bitmap;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Advertisement implements Serializable {
 
@@ -16,7 +18,7 @@ public class Advertisement implements Serializable {
     private Boolean visible;
     private UserVO user;
     private Category category;
-    private Bitmap photo;
+    private List<Image> images;
 
     public Integer getId() {
         return id;
@@ -82,11 +84,15 @@ public class Advertisement implements Serializable {
         this.category = category;
     }
 
-    public void setPhoto(Bitmap photo) {
-        this.photo = photo;
+    public List<Image> getImages() {
+        return images == null ? new ArrayList<Image>() : images;
     }
 
-    public Bitmap getPhoto() {
-        return photo;
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public void addImage(Image image){
+        getImages().add(image);
     }
 }
