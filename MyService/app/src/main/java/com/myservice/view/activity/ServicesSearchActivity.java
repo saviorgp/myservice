@@ -25,6 +25,7 @@ import com.myservice.R;
 import com.myservice.model.Preferences;
 import com.myservice.model.component.Advertisement;
 import com.myservice.model.component.Category;
+import com.myservice.model.component.FilterVO;
 import com.myservice.model.component.UserVO;
 import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
@@ -50,6 +51,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
     private AdvertisementAdapter adapter = null;
     private Integer total = 0;
     public boolean isLoading = false;
+    private FilterVO filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +110,8 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ((TextView)navigationView.findViewById(R.id.drawer_user_name_info)).setText((String)Preferences.getPreferences(this).getSharedPreference(Constants.USER_NAME));
-        ((TextView)navigationView.findViewById(R.id.drawer_user_email_info)).setText((String)Preferences.getPreferences(this).getSharedPreference(Constants.EMAIL));
+        ((TextView)navigationView.findViewById(R.id.drawer_user_name_info)).setText((String) Preferences.getPreferences(this).getSharedPreference(Constants.USER_NAME));
+        ((TextView)navigationView.findViewById(R.id.drawer_user_email_info)).setText((String) Preferences.getPreferences(this).getSharedPreference(Constants.EMAIL));
     }
 
     private void initializeListView(){
@@ -163,7 +165,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
 
     @Override
     public void execute() throws Exception {
-        resultObject = WebServiceWrapper.search(query, current_page);
+        resultObject = WebServiceWrapper.search(query, current_page, filter);
     }
 
     @Override
@@ -274,6 +276,9 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == SERVICE_FILTER && resultCode == RESULT_OK){
+
+            filter = (FilterVO) data.getSerializableExtra(ServiceFilterActivity.FILTER);
+            startTransacao(this);
         }
     }
 }

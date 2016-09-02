@@ -65,16 +65,6 @@
             android:layout_marginRight="10dp"
             android:prompt="@string/sub_categoria"></Spinner>
 
-        <EditText
-            android:id="@+id/edt_adv_filter_location"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/edit_text_rounded"
-            android:inputType="text" />
-
         <TextView
             style="@style/Text_25_White"
             android:layout_width="match_parent"

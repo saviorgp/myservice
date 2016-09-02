@@ -120,13 +120,37 @@ public class WebServiceWrapper {
         }
     }
 
-    public static JSONObject search(String query, Integer current_page) throws Exception{
+    public static JSONObject search(String query, Integer current_page, FilterVO filterVO) throws Exception{
 
         StringBuilder result = new StringBuilder();
+        StringBuffer queryStr = new StringBuffer("http://myservice-cecode.rhcloud.com/api/advertisements?page=" + current_page +"&query=" + query);
         HttpURLConnection conn = null;
 
         try {
-            URL url = new URL("http://myservice-cecode.rhcloud.com/api/advertisements?page=" + current_page +"&query=" + query);
+
+            if(filterVO != null){
+
+                if(filterVO.getCategoriaID() != null){
+                    queryStr.append("&category_id=" + filterVO.getCategoriaID());
+                }
+
+                if(filterVO.getPrecoOrder()){
+                    queryStr.append("&order_by_price=" + "asc");
+                }
+                else{
+                    queryStr.append("&order_by_price=" + "desc");
+                }
+
+                if(filterVO.getDataOrder()){
+                    queryStr.append("&created_at=" + "asc");
+                }
+                else{
+                    queryStr.append("&created_at=" + "desc");
+                }
+            }
+
+
+            URL url = new URL(queryStr.toString());
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 

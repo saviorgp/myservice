@@ -37,7 +37,7 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
 
     private Spinner categoria;
     private Spinner subcateria;
-    private EditText localizacao;
+  //  private EditText localizacao;
     private Boolean orderDate;
     private Boolean orderPrice;
 
@@ -52,7 +52,7 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
 
         categoria = (Spinner)findViewById(R.id.sp_adv_categoria);
         subcateria = (Spinner)findViewById(R.id.sp_adv_subcategoria);
-        localizacao = (EditText)findViewById(R.id.edt_adv_filter_location);
+       // localizacao = (EditText)findViewById(R.id.edt_adv_filter_location);
 
         findViewById(R.id.bt_adv_filer_apply).setOnClickListener(new View.OnClickListener() {
 
@@ -215,7 +215,7 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
         FilterVO filterVO = new FilterVO();
 
         filterVO.setCategoriaID(((Category)subcateria.getSelectedItem()).getId());
-        filterVO.setLocalizacao(localizacao.getText().toString());
+        //filterVO.setLocalizacao(localizacao.getText().toString());
         filterVO.setDataOrder(orderDate);
         filterVO.setPrecoOrder(orderPrice);
 
