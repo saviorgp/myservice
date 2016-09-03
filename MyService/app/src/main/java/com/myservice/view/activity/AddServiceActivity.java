@@ -46,7 +46,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddServiceActivity extends AppCompatActivity implements ITransaction, Validator.ValidationListener {
+public class AddServiceActivity extends BaseActivity implements ITransaction, Validator.ValidationListener {
 
     private static final int LOAD_PARENT_CATEGORY = 0;
     private static final int LOAD_SUB_CATEGORY = 1;
@@ -259,18 +259,6 @@ public class AddServiceActivity extends AppCompatActivity implements ITransactio
                 e.printStackTrace();
             }
 
-        }
-    }
-
-    public void startTransacao(ITransaction transacao) {
-
-        boolean redeOk = AndroidUtils.isNetworkAvailable(this);
-
-        if (redeOk) {
-            TransactionTask task = new TransactionTask(this, transacao, R.string.wait);
-            task.execute();
-        } else {
-            AndroidUtils.alertDialog(this, "Erro de net");
         }
     }
 

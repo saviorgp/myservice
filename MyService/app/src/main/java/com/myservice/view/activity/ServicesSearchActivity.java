@@ -7,7 +7,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
@@ -30,8 +29,6 @@ import com.myservice.model.component.Image;
 import com.myservice.model.component.UserVO;
 import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
-import com.myservice.model.transaction.TransactionTask;
-import com.myservice.utils.AndroidUtils;
 import com.myservice.utils.Constants;
 import com.myservice.view.adapter.AdvertisementAdapter;
 
@@ -41,7 +38,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ServicesSearchActivity extends AppCompatActivity implements ITransaction,  NavigationView.OnNavigationItemSelectedListener {
+public class ServicesSearchActivity extends BaseActivity implements ITransaction,  NavigationView.OnNavigationItemSelectedListener {
 
     private static final int SERVICE_FILTER = 10;
 
@@ -85,17 +82,34 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
 
     private void showSearchDialog(){
 
-        Dialog dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
+        final Dialog dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_search);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
+
+        dialog.findViewById(R.id.dialog_search_toolbar_logo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String str = ((TextView)dialog.findViewById(R.id.dialog_search_edt_search)).getText().toString();
+
+                 if(str.length() > 0){
+                     setSearch(str);
+                 }
+            }
+        });
 
         wlp.gravity = Gravity.CENTER;
         wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
         window.setAttributes(wlp);
         dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         dialog.show();
+    }
+
+    private void setSearch(String str){
+        this.query = str;
+        reloadSearchList(true);
     }
 
     private void initializeDrawer(){
@@ -211,17 +225,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         }
     }
 
-    public void startTransacao(ITransaction transacao) {
 
-        boolean redeOk = AndroidUtils.isNetworkAvailable(this);
-
-        if (redeOk) {
-            TransactionTask task = new TransactionTask(this, transacao, R.string.wait);
-            task.execute();
-        } else {
-            AndroidUtils.alertDialog(this, "Erro de net");
-        }
-    }
 
     @Override
     public void onBackPressed() {
@@ -286,14 +290,22 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         if(requestCode == SERVICE_FILTER && resultCode == RESULT_OK){
 
             filter = (FilterVO) data.getSerializableExtra(ServiceFilterActivity.FILTER);
-
-            current_page = 1;
-            total = 0;
-            isLoading = false;
-
-            initializeListView();
-
-            startTransacao(this);
+            reloadSearchList(false);
         }
+    }
+
+    private void reloadSearchList(boolean resetFilter){
+
+        current_page = 1;
+        total = 0;
+        isLoading = false;
+
+        if(resetFilter){
+            filter = null;
+        }
+
+        initializeListView();
+
+        startTransacao(this);
     }
 }
