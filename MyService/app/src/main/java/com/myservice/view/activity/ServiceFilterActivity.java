@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ServiceFilterActivity extends AppCompatActivity implements ITransaction {
+public class ServiceFilterActivity extends BaseActivity implements ITransaction {
 
     public static final String FILTER = "FILTER";
     private static final int LOAD_PARENT_CATEGORY = 0;
@@ -224,17 +224,4 @@ public class ServiceFilterActivity extends AppCompatActivity implements ITransac
 
         finish();
     }
-
-    public void startTransacao(ITransaction transacao) {
-
-        boolean redeOk = AndroidUtils.isNetworkAvailable(this);
-
-        if (redeOk) {
-            TransactionTask task = new TransactionTask(this, transacao, R.string.wait);
-            task.execute();
-        } else {
-            AndroidUtils.alertDialog(this, "Erro de net");
-        }
-    }
-
 }
