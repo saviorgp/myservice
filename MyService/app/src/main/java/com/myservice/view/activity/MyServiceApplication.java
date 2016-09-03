@@ -4,9 +4,7 @@ import android.app.Application;
 
 import org.codepond.wizardroid.Wizard;
 
-/**
- * Created by jozecarlos on 04/08/2016.
- */
+
 public class MyServiceApplication extends Application {
 
     private Wizard wizard;

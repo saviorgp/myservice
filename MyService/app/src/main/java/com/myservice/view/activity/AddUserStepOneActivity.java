@@ -15,9 +15,6 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 import com.myservice.R;
 import com.myservice.model.component.UserVO;
-import com.myservice.model.transaction.ITransaction;
-import com.myservice.model.transaction.TransactionTask;
-import com.myservice.utils.AndroidUtils;
 import com.myservice.utils.WizardValidate;
 
 import org.codepond.wizardroid.WizardStep;
