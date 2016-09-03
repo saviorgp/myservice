@@ -4,11 +4,9 @@ package com.myservice.view.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
@@ -17,8 +15,6 @@ import com.myservice.model.component.Category;
 import com.myservice.model.component.FilterVO;
 import com.myservice.model.component.WebServiceWrapper;
 import com.myservice.model.transaction.ITransaction;
-import com.myservice.model.transaction.TransactionTask;
-import com.myservice.utils.AndroidUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
