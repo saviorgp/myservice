@@ -195,7 +195,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
                     JSONArray imagesData = data.getJSONObject(i).getJSONArray("images");
 
                     for (int t = 0; t < imagesData.length(); t++) {
-                        advertisement.getImages().add( new Image(imagesData.getJSONObject(i).getLong("id"), imagesData.getJSONObject(i).getString("url")));
+                        advertisement.addImage( new Image(imagesData.getJSONObject(t).getLong("id"), imagesData.getJSONObject(t).getString("url")));
                     }
 
                     adapter.add(advertisement);

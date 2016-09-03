@@ -19,6 +19,7 @@ public class Advertisement implements Serializable {
     private UserVO user;
     private Category category;
     private List<Image> images;
+    private Bitmap photo;
 
     public Integer getId() {
         return id;
@@ -85,7 +86,12 @@ public class Advertisement implements Serializable {
     }
 
     public List<Image> getImages() {
-        return images == null ? new ArrayList<Image>() : images;
+
+        if(images == null){
+            images = new ArrayList<Image>();
+        }
+
+        return  images;
     }
 
     public void setImages(List<Image> images) {
@@ -94,5 +100,13 @@ public class Advertisement implements Serializable {
 
     public void addImage(Image image){
         getImages().add(image);
+    }
+
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
     }
 }

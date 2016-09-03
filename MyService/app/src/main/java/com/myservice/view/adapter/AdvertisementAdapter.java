@@ -26,6 +26,7 @@ public class AdvertisementAdapter extends ArrayAdapter<Advertisement> {
     public AdvertisementAdapter(Activity context, ArrayList<Advertisement> advertisementList) {
         super(context, R.layout.item_service, advertisementList);
 
+        downloader = new DownloadImagemUtil(context);
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -63,7 +64,6 @@ public class AdvertisementAdapter extends ArrayAdapter<Advertisement> {
         }
 
         Advertisement advertisement = getItem(position);
-       // holder.title.setText(advertisement.getUser().getName() + " " + advertisement.getUser().getLastName());
         holder.title.setText(advertisement.getTitle());
         holder.description.setText(advertisement.getCategory().getName());
         holder.imgFoto.setDrawingCacheEnabled(true);
@@ -71,6 +71,9 @@ public class AdvertisementAdapter extends ArrayAdapter<Advertisement> {
 
         if(advertisement.getImages().size() > 0){
             downloader.download(context, advertisement.getImages().get(0).getUrl(), holder.imgFoto, holder.progress);
+        }
+        else{
+            downloader.stop(holder.imgFoto, holder.progress, R.drawable.sample_img_item);
         }
 
         return view;

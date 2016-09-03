@@ -1,24 +1,27 @@
 package com.myservice.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Stack;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Stack;
 
 /**
  * Faz o download das imagens de um Adapter em uma Thread.
@@ -175,12 +178,16 @@ public class DownloadImagemUtil {
 		try {
 			
 			InputStream is = new URL(url).openStream();
-			OutputStream os = new FileOutputStream(f);
-			CopiaStream(is, os);
-			os.close();
-			Bitmap bitmap = getBitmap(f);
+			InputStream in = new BufferedInputStream(is);
+			BufferedReader r = new BufferedReader(new InputStreamReader(in));
+			StringBuilder sb = new StringBuilder();
+			String line;
+			while ((line = r.readLine()) != null) {
+				sb.append(line);
+			}
+
 			
-			return bitmap;
+			return decodeBase64(sb.toString());
 		} 
 		catch (Exception e) {
 			Log.e(TAG, e.getMessage(), e);
@@ -204,7 +211,13 @@ public class DownloadImagemUtil {
 		} catch (Exception ex) {
 		}
 	}
-	
+
+	public void stop(ImageView img, ProgressBar progress, int res) {
+		img.setVisibility(View.VISIBLE);
+		img.setImageResource(res);
+		progress.setVisibility(View.INVISIBLE);
+	}
+
 	private class ImagemDownload {
 		
 		public String url;
@@ -299,6 +312,12 @@ public class DownloadImagemUtil {
 		{
 			f.delete();
 		}
+	}
+
+	public  Bitmap decodeBase64(String input)
+	{
+		byte[] decodedBytes = Base64.decode(input, 0);
+		return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
 	}
 	/**
 	 * Retorna se � Android 3.0 ou superior (API Level 11)
