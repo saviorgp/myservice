@@ -139,21 +139,6 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
                 loadSpinnerDate(subcateria);
                 break;
             }
-
-            case 2:{
-                try {
-
-                    if(resultObject.has("id")){
-                        int adId = resultObject.getInt("id");
-                        finish();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-
             default: break;
         }
     }
