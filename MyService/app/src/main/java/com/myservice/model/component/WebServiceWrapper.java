@@ -123,8 +123,12 @@ public class WebServiceWrapper {
     public static JSONObject search(String query, Integer current_page, FilterVO filterVO) throws Exception{
 
         StringBuilder result = new StringBuilder();
-        StringBuffer queryStr = new StringBuffer("http://myservice-cecode.rhcloud.com/api/advertisements?page=" + current_page +"&query=" + query);
+        StringBuffer queryStr = new StringBuffer("http://myservice-cecode.rhcloud.com/api/advertisements?page=" + current_page);
         HttpURLConnection conn = null;
+
+        if(query != null && query.length() > 0){
+            queryStr.append("&query=" + query);
+        }
 
         try {
 

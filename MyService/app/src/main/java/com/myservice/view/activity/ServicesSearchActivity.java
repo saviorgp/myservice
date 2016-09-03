@@ -53,6 +53,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
     private Integer total = 0;
     public boolean isLoading = false;
     private FilterVO filter;
+    ListView listView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +121,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         advertisementArrayList  = new ArrayList<>();
         adapter = new AdvertisementAdapter(this, advertisementArrayList);
 
-        final ListView listView = (ListView) findViewById(R.id.listService);
+        listView = (ListView) findViewById(R.id.listService);
 
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -195,7 +196,7 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
                     JSONArray imagesData = data.getJSONObject(i).getJSONArray("images");
 
                     for (int t = 0; t < imagesData.length(); t++) {
-                        advertisement.addImage( new Image(imagesData.getJSONObject(t).getLong("id"), imagesData.getJSONObject(t).getString("url")));
+                        advertisement.addImage(new Image(imagesData.getJSONObject(t).getLong("id"), imagesData.getJSONObject(t).getString("url")));
                     }
 
                     adapter.add(advertisement);
@@ -285,6 +286,13 @@ public class ServicesSearchActivity extends AppCompatActivity implements ITransa
         if(requestCode == SERVICE_FILTER && resultCode == RESULT_OK){
 
             filter = (FilterVO) data.getSerializableExtra(ServiceFilterActivity.FILTER);
+
+            current_page = 1;
+            total = 0;
+            isLoading = false;
+
+            initializeListView();
+
             startTransacao(this);
         }
     }
