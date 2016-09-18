@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.text.format.DateFormat;
 import android.util.Log;
 
+import com.myservice.exceptions.CreateAdException;
 import com.myservice.exceptions.CreateUserException;
 import com.myservice.exceptions.LoginException;
 import com.myservice.model.Preferences;
@@ -65,6 +66,7 @@ public class WebServiceWrapper {
 
     public static void doCreateLogin(UserVO user) throws Throwable {
         try {
+
             HttpClient client = new DefaultHttpClient();
             HttpResponse response;
 
@@ -281,7 +283,7 @@ public class WebServiceWrapper {
         } catch(Throwable t) {
            throw t;
         }
-        
+
         return userResponse;
     }
 
@@ -455,12 +457,12 @@ public class WebServiceWrapper {
 
             if(response.getStatusLine().getStatusCode() == 412){
                 json = new JSONObject(output.toString());
-                throw new CreateUserException(json.getString(ERROR_REASON_DESC));
+                throw new CreateAdException(json.getString(ERROR_REASON_DESC));
             } else if(response.getStatusLine().getStatusCode() == LOGIN_INTERNAL_ERROR_CODE){
                 String msg = output.toString().replace("[","");
                 msg = msg.replace("]", "");
                 msg = msg.replaceAll("\"", "");
-                throw new CreateUserException(msg);
+                throw new CreateAdException(msg);
             }
 
             result =  new JSONObject(output.toString());
@@ -469,7 +471,7 @@ public class WebServiceWrapper {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (CreateUserException e) {
+        } catch (CreateAdException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
