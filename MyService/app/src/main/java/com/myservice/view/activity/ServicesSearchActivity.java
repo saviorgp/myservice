@@ -275,7 +275,7 @@ public class ServicesSearchActivity extends BaseActivity implements ITransaction
             startActivity(new Intent(this, AddServiceActivity.class));
 
         } else if (id == R.id.nav_sair) {
-
+            startActivity(new Intent(ServicesSearchActivity.this, LoginActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

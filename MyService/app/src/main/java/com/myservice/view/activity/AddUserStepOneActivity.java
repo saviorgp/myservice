@@ -102,6 +102,7 @@ public class AddUserStepOneActivity extends WizardStep implements Validator.Vali
 
     @Override
     public void onValidationSucceeded() {
+        ((MyServiceApplication)getActivity().getApplicationContext()).setCurrentPage(1);
         ((MyServiceApplication)getActivity().getApplicationContext()).getWizard().goNext();;
     }
 

@@ -1,6 +1,7 @@
 package com.myservice.view.activity;
 
 import android.app.Application;
+import android.view.View;
 
 import org.codepond.wizardroid.Wizard;
 
@@ -8,6 +9,7 @@ import org.codepond.wizardroid.Wizard;
 public class MyServiceApplication extends Application {
 
     private Wizard wizard;
+    private int currentPage;
 
     @Override
     public void onCreate() {
@@ -30,5 +32,13 @@ public class MyServiceApplication extends Application {
 
     public void setWizard(Wizard wizard) {
         this.wizard = wizard;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
     }
 }

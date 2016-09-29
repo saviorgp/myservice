@@ -1,5 +1,6 @@
 package com.myservice.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +26,11 @@ public class AddUserStepThreeActivity extends WizardStep {
             @Override
             public void onClick(View view) {
                 getActivity().finish();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
 
         return v;
     }
+
 }

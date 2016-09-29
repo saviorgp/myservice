@@ -80,6 +80,7 @@ public class AddUserStepTwoActivity extends WizardStep implements Validator.Vali
 
     @Override
     public void onValidationSucceeded() {
+        ((MyServiceApplication)getActivity().getApplicationContext()).setCurrentPage(2);
         startTransacao(this);
     }
 
