@@ -50,7 +50,7 @@
             android:id="@+id/sp_adv_categoria"
             style="@style/spinner_style"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
@@ -60,10 +60,23 @@
             android:id="@+id/sp_adv_subcategoria"
             style="@style/spinner_style"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:prompt="@string/sub_categoria"></Spinner>
+
+        <EditText
+            android:id="@+id/edt_adv_filter_city"
+            android:background="@drawable/edit_text_rounded"
+            android:drawableRight="@drawable/ic_location_edt"
+            android:drawablePadding="4dp"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="@string/location"/>
 
         <TextView
             style="@style/Text_25_White"

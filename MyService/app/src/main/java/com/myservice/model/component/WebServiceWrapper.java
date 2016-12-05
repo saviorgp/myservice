@@ -140,6 +140,10 @@ public class WebServiceWrapper {
                     queryStr.append("&category_id=" + filterVO.getCategoriaID());
                 }
 
+                if(filterVO.getLocalizacao() != null){
+                    queryStr.append("&city=" + filterVO.getLocalizacao());
+                }
+
                 if(filterVO.getPrecoOrder()){
                     queryStr.append("&order_by_price=" + "asc");
                 }
@@ -183,7 +187,6 @@ public class WebServiceWrapper {
         finally {
             conn.disconnect();
         }
-
 
         return new JSONObject(result.toString());
     }

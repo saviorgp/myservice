@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
@@ -33,7 +34,7 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
 
     private Spinner categoria;
     private Spinner subcateria;
-  //  private EditText localizacao;
+    private EditText cidade;
     private Boolean orderDate;
     private Boolean orderPrice;
 
@@ -48,7 +49,7 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
 
         categoria = (Spinner)findViewById(R.id.sp_adv_categoria);
         subcateria = (Spinner)findViewById(R.id.sp_adv_subcategoria);
-       // localizacao = (EditText)findViewById(R.id.edt_adv_filter_location);
+        cidade = (EditText)findViewById(R.id.edt_adv_filter_city);
 
         findViewById(R.id.bt_adv_filer_apply).setOnClickListener(new View.OnClickListener() {
 
@@ -196,7 +197,7 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
         FilterVO filterVO = new FilterVO();
 
         filterVO.setCategoriaID(((Category)subcateria.getSelectedItem()).getId());
-        //filterVO.setLocalizacao(localizacao.getText().toString());
+        filterVO.setLocalizacao(cidade.getText().toString());
         filterVO.setDataOrder(orderDate);
         filterVO.setPrecoOrder(orderPrice);
 

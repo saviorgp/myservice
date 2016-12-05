@@ -181,6 +181,7 @@ public class ServicesSearchActivity extends BaseActivity implements ITransaction
 
     @Override
     public void execute() throws Exception {
+        resultObject = null;
         resultObject = WebServiceWrapper.search(query, current_page, filter);
     }
 
