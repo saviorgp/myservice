@@ -78,6 +78,8 @@ public class ServicesSearchActivity extends BaseActivity implements ITransaction
 
         initializeDrawer();
         initializeListView();
+
+        startTransacao(this);
     }
 
     private void showSearchDialog(){
@@ -175,8 +177,6 @@ public class ServicesSearchActivity extends BaseActivity implements ITransaction
                 startActivity(it);
             }
         });
-
-        startTransacao(this);
     }
 
     @Override
