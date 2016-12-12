@@ -16,6 +16,10 @@ public class Category implements Serializable {
     public Category(String name){
         setName(name);
     }
+    public Category(String name, Integer id){
+        setName(name);
+        setId(id);
+    }
 
     public  Category(JSONObject categoryObj){
         try {

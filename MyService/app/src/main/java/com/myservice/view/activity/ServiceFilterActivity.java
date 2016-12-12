@@ -49,6 +49,8 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
 
         categoria = (Spinner)findViewById(R.id.sp_adv_categoria);
         subcateria = (Spinner)findViewById(R.id.sp_adv_subcategoria);
+        subcateria.setVisibility(View.GONE);
+
         cidade = (EditText)findViewById(R.id.edt_adv_filter_city);
 
         findViewById(R.id.bt_adv_filer_apply).setOnClickListener(new View.OnClickListener() {
@@ -98,8 +100,8 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
             @Override
             public void onClick(View view) {
                 orderPrice = true;
-                ((ImageButton)findViewById(R.id.bt_order_low_price)).setImageResource(R.drawable.bt_filter_lowest_price_disable);
-                ((ImageButton)findViewById(R.id.bt_order_big_price)).setImageResource(R.drawable.bt_filter_lowest_price_enable);
+                ((ImageButton) findViewById(R.id.bt_order_low_price)).setImageResource(R.drawable.bt_filter_lowest_price_disable);
+                ((ImageButton) findViewById(R.id.bt_order_big_price)).setImageResource(R.drawable.bt_filter_lowest_price_enable);
             }
         });
 
@@ -157,13 +159,19 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
                 ArrayList<Category> categories = new ArrayList<Category>();
                 JSONArray data = resultObject.getJSONArray("data");
 
+                if(spinner.equals(categoria)){
+                    categories.add(new Category("Selecione uma categoria",0));
+                }
+
                 for (int i = 0; i < data.length(); i++) {
 
                     categories.add(new Category(data.getJSONObject(i)));
                 }
 
                 spinner.setAdapter(null);
-                spinner.setAdapter(new ArrayAdapter<Category>(ServiceFilterActivity.this, android.R.layout.simple_spinner_dropdown_item, categories));
+                ArrayAdapter<Category> adapter = new ArrayAdapter<Category>(ServiceFilterActivity.this, android.R.layout.simple_spinner_dropdown_item, categories);
+
+                spinner.setAdapter(adapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -180,8 +188,15 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 selectedCategory = ((Category) categoria.getSelectedItem()).getId();
 
-                setOP(LOAD_SUB_CATEGORY);
-                startTransacao(ServiceFilterActivity.this);
+                if(selectedCategory != 0){
+                    subcateria.setVisibility(View.VISIBLE);
+                    setOP(LOAD_SUB_CATEGORY);
+                    startTransacao(ServiceFilterActivity.this);
+                }
+                else{
+                    subcateria.setAdapter(null);
+                    subcateria.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -196,7 +211,10 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
         Intent returnIntent = new Intent();
         FilterVO filterVO = new FilterVO();
 
-        filterVO.setCategoriaID(((Category)subcateria.getSelectedItem()).getId());
+        if(((Category)categoria.getSelectedItem()).getId() != 0){
+            filterVO.setCategoriaID(((Category)subcateria.getSelectedItem()).getId());
+        }
+
         filterVO.setLocalizacao(cidade.getText().toString());
         filterVO.setDataOrder(orderDate);
         filterVO.setPrecoOrder(orderPrice);
