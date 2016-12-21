@@ -136,12 +136,11 @@ public class WebServiceWrapper {
 
             if(filterVO != null){
 
-                if(filterVO.getCategoriaID() != null){
-                    queryStr.append("&category_id=" + filterVO.getCategoriaID());
-                }
-
                 if(filterVO.getSubCategoriaID() != null){
-                    queryStr.append("&subcategory_id=" + filterVO.getSubCategoriaID());
+                    queryStr.append("&category_id=" + filterVO.getSubCategoriaID());
+                }
+                else if(filterVO.getCategoriaID() != null){
+                    queryStr.append("&category_id=" + filterVO.getCategoriaID());
                 }
 
                 if(filterVO.getLocalizacao() != null){
