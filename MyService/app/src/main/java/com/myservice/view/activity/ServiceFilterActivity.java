@@ -159,8 +159,15 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
                 ArrayList<Category> categories = new ArrayList<Category>();
                 JSONArray data = resultObject.getJSONArray("data");
 
+                if(this.op == LOAD_SUB_CATEGORY && data.length() > 0 ){
+                    subcateria.setVisibility(View.VISIBLE);
+                }
+                else{
+                    subcateria.setVisibility(View.GONE);
+                }
+
                 if(spinner.equals(categoria)){
-                    categories.add(new Category("Selecione uma categoria",0));
+                    categories.add(new Category("Todas as categorias",0));
                 }
 
                 if(spinner.equals(subcateria)){
@@ -193,7 +200,6 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
                 selectedCategory = ((Category) categoria.getSelectedItem()).getId();
 
                 if(selectedCategory != 0){
-                    subcateria.setVisibility(View.VISIBLE);
                     setOP(LOAD_SUB_CATEGORY);
                     startTransacao(ServiceFilterActivity.this);
                 }
