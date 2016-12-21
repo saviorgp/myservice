@@ -163,6 +163,10 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
                     categories.add(new Category("Selecione uma categoria",0));
                 }
 
+                if(spinner.equals(subcateria)){
+                    categories.add(new Category("Selecione uma subcategoria",0));
+                }
+
                 for (int i = 0; i < data.length(); i++) {
 
                     categories.add(new Category(data.getJSONObject(i)));
@@ -212,7 +216,10 @@ public class ServiceFilterActivity extends BaseActivity implements ITransaction 
         FilterVO filterVO = new FilterVO();
 
         if(((Category)categoria.getSelectedItem()).getId() != 0){
-            filterVO.setCategoriaID(((Category)subcateria.getSelectedItem()).getId());
+            filterVO.setCategoriaID(((Category) categoria.getSelectedItem()).getId());
+        }
+        if(((Category)subcateria.getSelectedItem()).getId() != 0){
+            filterVO.setSubCategoriaID(((Category) subcateria.getSelectedItem()).getId());
         }
 
         filterVO.setLocalizacao(cidade.getText().toString());

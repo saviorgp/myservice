@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class FilterVO implements Serializable{
 
     private Integer categoriaID;
+    private Integer subCategoriaID;
     private String localizacao;
     private Integer minValor;
     private Integer maxValor;
@@ -66,5 +67,13 @@ public class FilterVO implements Serializable{
 
     public void setMaxValor(Integer maxValor) {
         this.maxValor = maxValor;
+    }
+
+    public Integer getSubCategoriaID() {
+        return subCategoriaID;
+    }
+
+    public void setSubCategoriaID(Integer subCategoriaID) {
+        this.subCategoriaID = subCategoriaID;
     }
 }

@@ -140,6 +140,10 @@ public class WebServiceWrapper {
                     queryStr.append("&category_id=" + filterVO.getCategoriaID());
                 }
 
+                if(filterVO.getSubCategoriaID() != null){
+                    queryStr.append("&subcategory_id=" + filterVO.getSubCategoriaID());
+                }
+
                 if(filterVO.getLocalizacao() != null){
                     queryStr.append("&city=" + filterVO.getLocalizacao());
                 }
